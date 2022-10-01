@@ -1,0 +1,77 @@
+.background {
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center
+}
+
+.myPendingEvents {
+    margin: 1rem;
+    padding: 0.5rem;
+    /* width:fit-content; */
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    border: 0.125rem solid #f0c000;
+    border-radius: 1rem;
+    box-shadow: 0.5px 4px 1px 1px #f0c000;
+}
+
+.myEvents {
+    max-width: 900px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center
+}
+
+.img {
+    margin: 1rem;
+    padding: 1rem;
+    width: 400px
+}
+
+.buttons {
+    width: 23rem;
+    max-width: 23rem;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    /* padding: 0.625rem; */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center
+    /* border is just to see the width of the containers */
+    /* border: 2px solid black; */
+  }
+
+@media only screen and (max-width: 1200px) {
+
+    .background {
+        background-color: #ffffff;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column-reverse;
+        align-content: center;
+        align-items: center;
+        justify-content: center
+    }
+  
+    .img {
+        margin: 1rem;
+        padding: 1rem;
+        width: 75%;
+        max-width: 400px
+    }
+  }
