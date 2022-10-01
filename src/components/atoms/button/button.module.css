@@ -1,0 +1,255 @@
+button {
+  position: relative;
+  width: 315px;
+  height: 2.5rem;
+
+  border-radius: 30px;
+}
+
+.signIn {
+  position: relative;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #835932;
+
+  background: #ffffff;
+  border-radius: 20px;
+  border: none;
+}
+
+.signIn:hover,
+.signIn:active {
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  background: #f0c000;
+}
+
+.signUp {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+
+  border: 3px solid #ffffff;
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+.signUp:hover,
+.signUp:active {
+  color: #835932;
+  background: #ffffff;
+  border-radius: 20px;
+  border: none;
+}
+
+.createEvent {
+  composes: signUp;
+  position: relative;
+  display: block;
+  top: 1.5rem;
+  left: 1rem;
+  margin-right: 2rem;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  width: calc(100% - 2rem);
+  height: 3rem;
+}
+
+.signUp2 {
+  position: relative;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #835932;
+
+  background: #f0c000;
+  border-radius: 20px;
+  border: none;
+}
+
+.signIn2 {
+  position: relative;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: rgba(0, 0, 0, 0.25);
+
+  background: #ffffff;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+.myProfile1 {
+  position: relative;
+  width: 8.75rem;
+  height: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #835932;
+
+  background: #f0c000;
+  border-radius: 1.25rem;
+  border: none;
+}
+
+.myProfile1:hover {
+  background-color: #f5f5f5;
+  border: 0.125rem solid #f0c000;
+}
+
+.myProfile2 {
+  height: 2.5rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  border-radius: 0%;
+  border: solid #f0c000;
+  color: #835932;
+  background: #f5f5f5;
+  transition-duration: 0.4s;
+}
+
+.myProfile2:hover {
+  background-color: #f0c000;
+}
+
+.eventCard {
+  height: 2rem;
+  /* width: auto; */
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  border-radius: 0%;
+  border: solid #f0c000;
+  color: #835932;
+  background: #f5f5f5;
+  transition-duration: 0.4s;
+}
+
+.eventCard:hover {
+  background-color: #f0c000;
+}
+
+.myEvents {
+  position: relative;
+  width: 8.75rem;
+  height: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #835932;
+
+  background: #f0c000;
+  border-radius: 1.25rem;
+  border: none;
+}
+
+.myEvents:hover {
+  background-color: #f5f5f5;
+  border: 0.125rem solid #f0c000;
+}
+
+.myProfile3 {
+  margin-top: 15px;
+  position: relative;
+  width: 8rem;
+  height: 1.4rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 155.4%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #835932;
+  background: #f0c000;
+  border-radius: 1.25rem;
+  border: none;
+}
+
+.myProfile3:hover {
+  background-color: #f5f5f5;
+  border: 0.125rem solid #f0c000;
+}
+
+.pictureUpload {
+  display: relative;
+  height: 2rem;
+  width: 6rem;
+  top: -10.5rem;
+  left: 2rem;
+  margin-top: 0.1rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  border-radius: 3rem;
+  border: solid #f0c000;
+  color: #835932;
+  background: #f5f5f5;
+  transition-duration: 0.4s;
+}
+
+.pictureUpload:hover {
+  background-color: #f0c000;
+  border: solid #ffffff;
+}
