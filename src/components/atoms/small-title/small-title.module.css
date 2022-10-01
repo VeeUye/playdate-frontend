@@ -1,0 +1,121 @@
+/* TODO: refactor to work with screensize hook*/
+
+.default {
+  position: relative;
+  width: max-content;
+  height: 40px;
+  left: 98px;
+  top: 86px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+}
+
+.createProfile {
+  position: relative;
+  width: max-content;
+  height: 40px;
+  left: 3rem;
+  top: 86px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+}
+
+.myEvents {
+  /* position: relative; */
+  /* width: max-content; */
+  height: 40px;
+  left: 4rem;
+  top: 86px;
+  margin: 3rem;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #f0c000;
+}
+
+.myEventsNoEvents {
+  height: 40px;
+  left: 4rem;
+  top: 86px;
+  margin: 3rem;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #f0c000;
+}
+
+.myPendingEvents {
+  height: 40px;
+  left: 4rem;
+  top: 86px;
+  /* margin: 0.5rem; */
+  padding: 0.5rem;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 155.4%;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #f0c000;
+}
+
+
+.smallTitleFriend {
+  font-family: "Baloo";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 155.4%;
+  /* identical to box height, or 31px */
+
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+}
+
+@media only screen and (min-width: 600px) {
+  .default {
+    text-align: left;
+    left: 4rem;
+    top: 10rem;
+    font-size: 2rem;
+    width: max-content;
+  }
+
+  .createProfile {
+    top: 10rem;
+    font-size: 2rem;
+    left: 3rem;
+  }
+}
