@@ -4,7 +4,7 @@ import Splash from "../../components/splash/Splash";
 import Image from "../../assets/images/swinging.svg";
 
 describe("Splash", () => {
-  it("renders correctly", () => {
+  xit("renders correctly", () => {
     const { asFragment } = render(<Splash />);
 
     expect(asFragment()).toMatchSnapshot();

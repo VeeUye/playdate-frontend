@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { UserAuth } from "../../contexts/AuthContext";
 import getUserFriends from "../../requests/users/getUserFriends";
+
 import screenSize from "../../functions/screenSize";
 import SmallTitle from "../atoms/small-title/SmallTitle";
 import CreateEventForm from "./CreateEventForm";
+import LoadSpinner from "../load-spinner/LoadSpinner";
+
 import Image from "../../assets/images/float.svg";
+
 import createEventStyles from "../create-event/create-event.module.css";
 import titleStyles from "../atoms/small-title/small-title.module.css";
-import { UserAuth } from "../../contexts/AuthContext";
-import LoadSpinner from "../load-spinner/LoadSpinner";
 import "./create-event.module.css";
+
+
 
 const CreateEvent = () => {
   const isSmall = screenSize();
 
   const { user, token } = UserAuth();
+
+  console.log(user)
+  console.log(token)
+  console.log(user.uid)
 
   const [friends, setFriends] = useState([]);
 
@@ -28,6 +37,8 @@ const CreateEvent = () => {
     });
   }, [user]);
 
+  console.log(user.uid)
+
   return (
     <>
       {!user || !token || !friends ? (
@@ -41,7 +52,7 @@ const CreateEvent = () => {
           }
         >
           <div className="background">
-            <SmallTitle className={titleStyles.default} text="Create Event" />
+            <SmallTitle className={titleStyles.default} text="Create Event" data-testid='title'/>
             <CreateEventForm user={user} token={token} friends={friends} />
             <img
               className={createEventStyles.img}
