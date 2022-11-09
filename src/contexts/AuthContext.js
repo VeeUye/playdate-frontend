@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { auth, getIdToken } from "../firebase";
 
-const UserContext = createContext();
+export const UserContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const AuthContextProvider = ({ children }) => {
@@ -30,10 +30,10 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-      getIdToken(currentUser).then((token) => {
-        setToken(token)
-      })
-    }
+        getIdToken(currentUser).then((token) => {
+          setToken(token);
+        });
+      }
     });
 
     return () => {
