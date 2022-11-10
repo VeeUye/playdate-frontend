@@ -4,7 +4,7 @@ import LoadSpinnerStyles from "./load-spinner.module.css";
 
 const LoadSpinner = () => {
   return (
-    <div className={LoadSpinnerStyles.loadSpinner}>
+    <div className={LoadSpinnerStyles.loadSpinner} data-testid="spinner">
       <PuffLoader
         color="#835932"
         className={LoadSpinnerStyles.moonLoader}

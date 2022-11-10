@@ -43,13 +43,14 @@ const CreateEvent = () => {
               : createEventStyles.bigScreen
           }
         >
-          <div className="background">
-            <SmallTitle
-              className={titleStyles.default}
-              text="Create Event"
-              data-testid="title"
+          <div className="outer" data-testid="create-event-outer">
+            <SmallTitle className={titleStyles.default} text="Create Event" />
+            <CreateEventForm
+              user={user}
+              token={token}
+              friends={friends}
+              data-testid="create-event-form"
             />
-            <CreateEventForm user={user} token={token} friends={friends} />
             <img
               className={createEventStyles.img}
               src={Image}
