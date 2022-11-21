@@ -12,6 +12,7 @@ import Image from "../../assets/images/float.svg";
 import createEventStyles from "../create-event/create-event.module.css";
 import titleStyles from "../atoms/small-title/small-title.module.css";
 import "./create-event.module.css";
+import classNames from "classnames";
 
 const CreateEvent = () => {
   const isSmall = screenSize();
@@ -36,6 +37,8 @@ const CreateEvent = () => {
       {!user || !token || !friends ? (
         <LoadSpinner />
       ) : (
+        // todo - use classNames syntax to conditionally render
+        // get rid of extra outer div
         <div
           className={
             isSmall
@@ -43,7 +46,14 @@ const CreateEvent = () => {
               : createEventStyles.bigScreen
           }
         >
-          <div className="outer" data-testid="create-event-outer">
+          <div
+            className={classNames(
+              "outer",
+              [createEventStyles.smallScreen, isSmall],
+              [createEventStyles.bigScreen, !isSmall]
+            )}
+            data-testid="create-event-outer"
+          >
             <SmallTitle className={titleStyles.default} text="Create Event" />
             <CreateEventForm
               user={user}
