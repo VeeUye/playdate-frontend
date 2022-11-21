@@ -22,10 +22,11 @@ const CreateEvent = () => {
   useEffect(() => {
     getUserFriends(user.uid, token).then((result) => {
       if (result) {
-        const friendsInvite = result.map((friend) => {
+        const currentFriends = result.map((friend) => {
           return { value: friend.userId, label: friend.name };
         });
-        setFriends(friendsInvite);
+        console.log(currentFriends);
+        setFriends(currentFriends);
       }
     });
   }, [user]);
