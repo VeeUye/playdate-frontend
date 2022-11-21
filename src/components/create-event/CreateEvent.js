@@ -19,13 +19,14 @@ const CreateEvent = () => {
 
   const [friends, setFriends] = useState([]);
 
+  // todo: test the correct value is passed into friends in create-event-form itself
+
   useEffect(() => {
     getUserFriends(user.uid, token).then((result) => {
       if (result) {
         const currentFriends = result.map((friend) => {
           return { value: friend.userId, label: friend.name };
         });
-        console.log(currentFriends);
         setFriends(currentFriends);
       }
     });
@@ -38,7 +39,6 @@ const CreateEvent = () => {
       ) : (
         <div
           className={classNames(
-            "outer",
             { [styles.smallScreen]: isSmall },
             { [styles.bigScreen]: !isSmall }
           )}
