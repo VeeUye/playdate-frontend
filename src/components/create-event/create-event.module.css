@@ -25,6 +25,16 @@
   margin-right: 5rem;
 }
 
+/* Title
+------------------------------------------------------------- */
+
+  @media only screen and (max-width: 600px) {
+   .title {
+     left: 60px;
+   }
+  }
+
+
 .img {
   position: relative;
   left: 15%;

@@ -9,14 +9,12 @@ import LoadSpinner from "../load-spinner/LoadSpinner";
 
 import Image from "../../assets/images/float.svg";
 
-import createEventStyles from "../create-event/create-event.module.css";
+import styles from "./create-event.module.css";
 import titleStyles from "../atoms/small-title/small-title.module.css";
-import "./create-event.module.css";
 import classNames from "classnames";
 
 const CreateEvent = () => {
   const isSmall = screenSize();
-
   const { user, token } = UserAuth();
 
   const [friends, setFriends] = useState([]);
@@ -37,41 +35,29 @@ const CreateEvent = () => {
       {!user || !token || !friends ? (
         <LoadSpinner />
       ) : (
-        // todo - use classNames syntax to conditionally render
-        // get rid of extra outer div
         <div
-          className={
-            isSmall
-              ? createEventStyles.smallScreen
-              : createEventStyles.bigScreen
-          }
+          className={classNames(
+            "outer",
+            { [styles.smallScreen]: isSmall },
+            { [styles.bigScreen]: !isSmall }
+          )}
+          data-testid="create-event-outer"
         >
-          <div
-            className={classNames(
-              "outer",
-              [createEventStyles.smallScreen, isSmall],
-              [createEventStyles.bigScreen, !isSmall]
-            )}
-            data-testid="create-event-outer"
-          >
-            <SmallTitle className={titleStyles.default} text="Create Event" />
+          <div>
+            <SmallTitle
+              className={classNames(titleStyles.default, styles.title)}
+              text="Create Event"
+            />
+
             <CreateEventForm
               user={user}
               token={token}
               friends={friends}
               data-testid="create-event-form"
             />
-            <img
-              className={createEventStyles.img}
-              src={Image}
-              alt="girl floating"
-            />
           </div>
-          <img
-            className={createEventStyles.img2}
-            src={Image}
-            alt="girl floating"
-          />
+          <img className={styles.img} src={Image} alt="girl floating" />
+          <img className={styles.img2} src={Image} alt="girl floating" />
         </div>
       )}
     </>
