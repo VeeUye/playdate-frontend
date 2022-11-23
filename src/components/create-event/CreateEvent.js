@@ -27,6 +27,7 @@ const CreateEvent = () => {
         const currentFriends = result.map((friend) => {
           return { value: friend.userId, label: friend.name };
         });
+        console.log(currentFriends);
         setFriends(currentFriends);
       }
     });

@@ -1,36 +1,37 @@
-/* eslint-disable react/prop-types */
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import inputStyles from "./form-input.module.css";
 import Select from "react-select";
 
-const MultiSelectInput = (props) => {
+const MultiSelectInput = ({ name, label, options, placeholder, onChange }) => {
+  console.log({ name, label, options, placeholder, onChange });
   return (
     <div className={inputStyles.field}>
-      <label className={inputStyles.label} htmlFor={props.name}>
-        {props.label}
+      <label className={inputStyles.label} htmlFor={name}>
+        {label}
         <Select
           isMulti
-          className={props.className}
-          id={props.name}
-          options={props.options}
-          placeholder={props.placeholder}
-          onChange={props.onChange}
+          id={name}
+          options={options}
+          placeholder={placeholder}
+          onChange={onChange}
         />
       </label>
     </div>
   );
 };
 
-// FormInput.propTypes = {
-//   className: PropTypes.string,
-//   name: PropTypes.string,
-//   label: PropTypes.string,
-//   type: PropTypes.string,
-//   value: PropTypes.string,
-//   placeholder: PropTypes.string,
-//   onChange: PropTypes.func,
-// }; */
-// }
+MultiSelectInput.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    }).isRequired
+  ),
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default MultiSelectInput;

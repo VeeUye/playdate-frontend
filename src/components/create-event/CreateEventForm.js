@@ -55,7 +55,7 @@ const CreateEventForm = ({ user, token, friends }) => {
       ...fields,
       [event.target.name]: event.target.value,
       ["owner"]: user.uid,
-      ["friends_accepted"]: [user.uid]
+      ["friends_accepted"]: [user.uid],
     });
   };
 
@@ -120,6 +120,8 @@ const CreateEventForm = ({ user, token, friends }) => {
               label="Invite"
               onChange={handleMultiInviteChange}
               options={friends}
+              name="multi-select"
+              placeholder="Select..."
             />
 
             <Alert message={alert.message} success={alert.isSuccess} />
