@@ -66,7 +66,7 @@ const CreateEventForm = ({ user, token, friends }) => {
 
   return (
     <>
-      <form onSubmit={handleCreateEvent}>
+      <form role="form" onSubmit={handleCreateEvent}>
         <div className={formStyles.field1}>
           <div>
             <FormInput
@@ -117,10 +117,11 @@ const CreateEventForm = ({ user, token, friends }) => {
 
             <MultiSelectInput
               styles={inputStyles.input}
-              label="Invite"
+              label="invite"
               onChange={handleMultiInviteChange}
               options={friends}
-              name="multi-select"
+              name="invite"
+              inputId="invite"
               placeholder="Select..."
             />
 
