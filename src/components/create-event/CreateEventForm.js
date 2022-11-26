@@ -9,6 +9,9 @@ import Button from "../atoms/button/Button";
 import formStyles from "./create-event-form.module.css";
 import inputStyles from "../atoms/form-input/form-input.module.css";
 import buttonStyles from "../atoms/button/button.module.css";
+import Downshift from "downshift";
+import classNames from "classnames";
+import DownShiftMultiSelect from "../atoms/form-input/DownShiftMultiSelect";
 
 const CreateEventForm = ({ user, token, friends }) => {
   const history = useHistory();
@@ -114,6 +117,8 @@ const CreateEventForm = ({ user, token, friends }) => {
               value={fields.location}
               onChange={handleFieldChange}
             />
+
+            {/*<DownShiftMultiSelect />*/}
 
             <MultiSelectInput
               styles={inputStyles.input}
