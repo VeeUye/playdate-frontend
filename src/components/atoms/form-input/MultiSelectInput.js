@@ -12,7 +12,7 @@ const MultiSelectInput = ({
   onChange,
 }) => {
   return (
-    <form
+    <div
       id={name}
       className={inputStyles.field}
       aria-labelledby={label}
@@ -29,7 +29,7 @@ const MultiSelectInput = ({
           onChange={onChange}
         />
       </label>
-    </form>
+    </div>
   );
 };
 
