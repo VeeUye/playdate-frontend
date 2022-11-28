@@ -1,17 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useCombobox, useMultipleSelection } from "downshift";
 import classNames from "classnames";
 import styles from "./downshift-multi-select.module.css";
 
-function MultipleComboBoxExample() {
-  const friends = [
-    { value: "FaoLwxoE2ub6qYMZRACNiNEth9OH", label: "Chief Wiggum" },
-    { value: "t0fvq3bA77Z7X3F1a7LkeCOBipne", label: "Ned Flanders" },
-    { value: "5B7vtdeoWXWtjdE69cNZoMM35tDz", label: "Mrs Muntz" },
-    { value: "IjGY7FYdqX6KbJ0yaje1qfPQLAJX", label: "Luann Van Houten" },
-    { value: "hUt11WDzxEYMvT3Tyh9kGm1JVaHw", label: "Mrs Powell" },
-  ];
-
+const MultiComboBox = ({ friends, handleMultiInviteChange }) => {
   const initialSelectedItems = [friends[0]];
 
   function getFilteredFriends(selectedItems, inputValue) {
@@ -33,27 +26,25 @@ function MultipleComboBoxExample() {
       () => getFilteredFriends(selectedItems, inputValue),
       [selectedItems, inputValue]
     );
-    const {
-      getSelectedItemProps,
-      getDropdownProps,
-      // addSelectedItem,
-      removeSelectedItem,
-    } = useMultipleSelection({
-      selectedItems,
-      onStateChange({ selectedItems: newSelectedItems, type }) {
-        switch (type) {
-          case useMultipleSelection.stateChangeTypes
-            .SelectedItemKeyDownBackspace:
-          case useMultipleSelection.stateChangeTypes.SelectedItemKeyDownDelete:
-          case useMultipleSelection.stateChangeTypes.DropdownKeyDownBackspace:
-          case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
-            setSelectedItems(newSelectedItems);
-            break;
-          default:
-            break;
-        }
-      },
-    });
+    const { getSelectedItemProps, getDropdownProps, removeSelectedItem } =
+      useMultipleSelection({
+        selectedItems,
+        onStateChange({ selectedItems: newSelectedItems, type }) {
+          switch (type) {
+            case useMultipleSelection.stateChangeTypes
+              .SelectedItemKeyDownBackspace:
+            case useMultipleSelection.stateChangeTypes
+              .SelectedItemKeyDownDelete:
+            case useMultipleSelection.stateChangeTypes.DropdownKeyDownBackspace:
+            case useMultipleSelection.stateChangeTypes
+              .FunctionRemoveSelectedItem:
+              setSelectedItems(newSelectedItems);
+              break;
+            default:
+              break;
+          }
+        },
+      });
     const {
       isOpen,
       getToggleButtonProps,
@@ -74,7 +65,7 @@ function MultipleComboBoxExample() {
         const { changes, type } = actionAndChanges;
 
         switch (type) {
-          case useCombobox.stateChangeTypes.InputKeyDownEnter:
+          case useCombobox.stateChangeTypes.InputKeyDownEnter: // case useCombobox.stateChangeTypes.InputKeyDownEnter:
           case useCombobox.stateChangeTypes.ItemClick:
           case useCombobox.stateChangeTypes.InputBlur:
             return {
@@ -144,10 +135,15 @@ function MultipleComboBoxExample() {
             })}
             <div className={styles.inputWrapper}>
               <input
+                id="test-input"
+                value="test"
                 placeholder="Select friends to invite..."
                 className={styles.input}
                 {...getInputProps(
-                  getDropdownProps({ preventKeyAction: !isOpen })
+                  getDropdownProps({
+                    preventKeyAction: isOpen,
+                    onBlur: handleMultiInviteChange,
+                  })
                 )}
               />
               <button
@@ -182,6 +178,16 @@ function MultipleComboBoxExample() {
   }
 
   return <MultipleComboBox />;
-}
+};
 
-export default MultipleComboBoxExample;
+MultiComboBox.propTypes = {
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  handleMultiInviteChange: PropTypes.func.isRequired,
+};
+
+export default MultiComboBox;

@@ -11,6 +11,7 @@ const MultiSelectInput = ({
   placeholder,
   onChange,
 }) => {
+  console.log(options);
   return (
     <div
       id={name}

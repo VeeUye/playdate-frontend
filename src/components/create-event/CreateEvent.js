@@ -17,9 +17,7 @@ const CreateEvent = () => {
   const isSmall = screenSize();
   const { user, token } = UserAuth();
 
-  const [friends, setFriends] = useState([]);
-
-  // todo: test the correct value is passed into friends in create-event-form itself
+  const [friends, setFriends] = useState([{}]);
 
   useEffect(() => {
     getUserFriends(user.uid, token).then((result) => {
@@ -56,6 +54,7 @@ const CreateEvent = () => {
               token={token}
               friends={friends}
               data-testid="create-event-form"
+              key="create-event-outer"
             />
           </div>
           <img className={styles.img} src={Image} alt="girl floating" />

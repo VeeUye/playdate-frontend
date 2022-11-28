@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import FormInput from "../atoms/form-input/FormInput";
-import MultiSelectInput from "../atoms/form-input/MultiSelectInput";
+// import MultiSelectInput from "../atoms/form-input/MultiSelectInput";
 import postEvent from "../../requests/events/postEvent";
 import Alert from "../../requests/alert/Alert";
 import Button from "../atoms/button/Button";
+import MultiComboBox from "../atoms/form-input/MultiComboBox";
 import formStyles from "./create-event-form.module.css";
 import inputStyles from "../atoms/form-input/form-input.module.css";
 import buttonStyles from "../atoms/button/button.module.css";
-// import Downshift from "downshift";
-// import classNames from "classnames";
-// import DownShiftMultiSelect from "../atoms/form-input/DownShiftMultiSelect";
 
 const CreateEventForm = ({ user, token, friends }) => {
   const history = useHistory();
@@ -63,13 +61,14 @@ const CreateEventForm = ({ user, token, friends }) => {
   };
 
   const handleMultiInviteChange = (event) => {
-    const selectedFriends = event.map((friend) => friend.value);
-    setFields({ ...fields, ["friends_invited"]: selectedFriends });
+    console.log(event);
+    // const selectedFriends = event.map((friend) => friend.value);
+    // setFields({ ...fields, ["friends_invited"]: selectedFriends });
   };
 
   return (
     <>
-      <form role="form" onSubmit={handleCreateEvent}>
+      <form role="form" onSubmit={handleCreateEvent} key="create-event-key">
         <div className={formStyles.field1}>
           <div>
             <FormInput
@@ -80,6 +79,7 @@ const CreateEventForm = ({ user, token, friends }) => {
               placeholder="Event name"
               value={fields.name}
               onChange={handleFieldChange}
+              key="event-name-key"
             />
 
             <FormInput
@@ -89,6 +89,7 @@ const CreateEventForm = ({ user, token, friends }) => {
               name="description"
               value={fields.description}
               onChange={handleFieldChange}
+              key="description-key"
             />
 
             <FormInput
@@ -98,6 +99,7 @@ const CreateEventForm = ({ user, token, friends }) => {
               name="date_start"
               value={fields.date_start}
               onChange={handleFieldChange}
+              key="date-start-key"
             />
 
             <FormInput
@@ -107,6 +109,7 @@ const CreateEventForm = ({ user, token, friends }) => {
               name="date_end"
               value={fields.date_end}
               onChange={handleFieldChange}
+              key="date-end-key"
             />
 
             <FormInput
@@ -116,19 +119,24 @@ const CreateEventForm = ({ user, token, friends }) => {
               name="location"
               value={fields.location}
               onChange={handleFieldChange}
+              key="location-key"
+            />
+            <MultiComboBox
+              friends={friends}
+              handleMultiInviteChange={handleMultiInviteChange}
+              key="invite-friends-key"
+              value={fields.friends_invited}
             />
 
-            {/*<DownShiftMultiSelect />*/}
-
-            <MultiSelectInput
-              styles={inputStyles.input}
-              label="invite"
-              onChange={handleMultiInviteChange}
-              options={friends}
-              name="invite"
-              inputId="invite"
-              placeholder="Select..."
-            />
+            {/*<MultiSelectInput*/}
+            {/*  styles={inputStyles.input}*/}
+            {/*  label="invite"*/}
+            {/*  onChange={handleMultiInviteChange}*/}
+            {/*  options={friends}*/}
+            {/*  name="invite"*/}
+            {/*  inputId="invite"*/}
+            {/*  placeholder="Select..."*/}
+            {/*/>*/}
 
             <Alert message={alert.message} success={alert.isSuccess} />
 
@@ -147,12 +155,12 @@ const CreateEventForm = ({ user, token, friends }) => {
 export default CreateEventForm;
 
 CreateEventForm.propTypes = {
-  user: PropTypes.object,
-  token: PropTypes.string,
+  user: PropTypes.object.isRequired,
+  token: PropTypes.string.isRequired,
   friends: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
     })
-  ),
+  ).isRequired,
 };
