@@ -9,8 +9,8 @@ import Button from "../atoms/button/Button";
 import formStyles from "./create-event-form.module.css";
 import inputStyles from "../atoms/form-input/form-input.module.css";
 import buttonStyles from "../atoms/button/button.module.css";
-import DownshiftMultiSelect from "../atoms/form-input/MultiTest";
 
+// eslint-disable-next-line no-unused-vars
 const CreateEventForm = ({ user, token, friends }) => {
   const history = useHistory();
 
@@ -60,6 +60,7 @@ const CreateEventForm = ({ user, token, friends }) => {
     });
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleMultiInviteChange = (event) => {
     console.log(event.target.value);
     const updateArr = fields.friends_invited;
@@ -186,13 +187,15 @@ const CreateEventForm = ({ user, token, friends }) => {
 
 export default CreateEventForm;
 
+// sort proptypes
+
 CreateEventForm.propTypes = {
   user: PropTypes.object.isRequired,
   token: PropTypes.string.isRequired,
   friends: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
+      value: PropTypes.string,
+      label: PropTypes.string,
     })
-  ).isRequired,
+  ),
 };
