@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import FormInput from "../atoms/form-input/FormInput";
-// import MultiSelectInput from "../atoms/form-input/MultiSelectInput";
 import postEvent from "../../requests/events/postEvent";
 import Alert from "../../requests/alert/Alert";
 import Button from "../atoms/button/Button";
 import formStyles from "./create-event-form.module.css";
 import inputStyles from "../atoms/form-input/form-input.module.css";
 import buttonStyles from "../atoms/button/button.module.css";
+import DownshiftMultiSelect from "../atoms/form-input/DownshiftMultiSelect";
 
-// eslint-disable-next-line no-unused-vars
 const CreateEventForm = ({ user, token, friends }) => {
   const history = useHistory();
 
@@ -60,33 +59,17 @@ const CreateEventForm = ({ user, token, friends }) => {
     });
   };
 
-  // eslint-disable-next-line no-unused-vars
   const handleMultiInviteChange = (event) => {
-    console.log(event.target.value);
+    console.log(event.target.value, "---friends");
     const updateArr = fields.friends_invited;
     updateArr.push(event.target.value);
-    console.log(updateArr);
+    console.log(updateArr, "----update");
     setFields({
       ...fields,
-      [event.target.name]: event.target.value,
-      ["owner"]: user.uid,
+
       ["friends_invited"]: updateArr,
     });
   };
-
-  // console.log(event);
-  // const selectedFriends = event.map((friend) => friend.value);
-  // setFields({
-  //   ...fields,
-  //   [event.target.name]: event.target.value,
-  //   ["owner"]: user.uid,
-  //   [fields.friends_invited]: selectedFriends,
-  // });
-  // };
-
-  console.log(fields.friends_invited);
-
-  // For some reason, frontend cant read the label, and backend won't accept the value
 
   return (
     <>
@@ -146,13 +129,13 @@ const CreateEventForm = ({ user, token, friends }) => {
 
             {/*Include DownshiftMulti Select below */}
 
-            {/*<DownshiftMultiSelect*/}
-            {/*  friends={friends}*/}
-            {/*  onChange={handleMultiInviteChange}*/}
-            {/*  label="invite"*/}
-            {/*  name="invite"*/}
-            {/*  value={fields.friends_invited}*/}
-            {/*/>*/}
+            <DownshiftMultiSelect
+              friends={friends}
+              onChange={handleMultiInviteChange}
+              label="invite"
+              name="invite"
+              value={fields.friends_invited}
+            />
 
             {/*<MultiComboBox*/}
             {/*  friends={friends}*/}
