@@ -37,11 +37,13 @@ function DownshiftMultiSelect({ friends, onChange, value }) {
       items: friends,
       itemToString,
       stateReducer,
-      selectedItem: null,
+      selectedItem: value,
       onSelectedItemChange: ({ selectedItem }) => {
         if (!selectedItem) {
           return;
         }
+
+        console.log(selectedItem, "---selecteditem");
 
         const index = selectedItems.indexOf(selectedItem);
 
@@ -95,7 +97,7 @@ function DownshiftMultiSelect({ friends, onChange, value }) {
                 <input
                   type="checkbox"
                   className="h-5 w-5"
-                  checked={selectedItems.includes(item)}
+                  checked={selectedItem.includes(item.label)}
                   value={item.label}
                   onChange={onChange}
                 />

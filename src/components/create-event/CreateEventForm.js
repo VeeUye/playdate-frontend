@@ -50,7 +50,7 @@ const CreateEventForm = ({ user, token, friends }) => {
     history.push("/my-profile");
   };
 
-  const handleFieldChange = (event) => {
+  const handleOnFieldChange = (event) => {
     setFields({
       ...fields,
       [event.target.name]: event.target.value,
@@ -59,18 +59,25 @@ const CreateEventForm = ({ user, token, friends }) => {
     });
   };
 
-  const handleMultiInviteChange = (event) => {
-    const updateArr = fields.friends_invited;
-    if (!updateArr.includes(event.target.value)) {
-      updateArr.push(event.target.value);
-      console.log(updateArr, "----update");
+  const handleOnFriendsInvitedChange = (event) => {
+    const friendsInvited = fields.friends_invited;
+
+    const addFriendToFriendsInvited = () => {
+      friendsInvited.push(event.target.value);
+      console.log(friendsInvited, "----updated");
       setFields({
         ...fields,
-
-        ["friends_invited"]: updateArr,
+        ["friends_invited"]: friendsInvited,
       });
-    }
-    console.log("This friend has already been invited");
+    };
+
+    const friendNotAlreadyInvited = !friendsInvited.includes(
+      event.target.value
+    );
+
+    friendNotAlreadyInvited
+      ? addFriendToFriendsInvited()
+      : console.log("This friend has already been invited");
   };
 
   return (
@@ -85,7 +92,7 @@ const CreateEventForm = ({ user, token, friends }) => {
               name="name"
               placeholder="Event name"
               value={fields.name}
-              onChange={handleFieldChange}
+              onChange={handleOnFieldChange}
               key="event-name-key"
             />
 
@@ -95,7 +102,7 @@ const CreateEventForm = ({ user, token, friends }) => {
               type="text"
               name="description"
               value={fields.description}
-              onChange={handleFieldChange}
+              onChange={handleOnFieldChange}
               key="description-key"
             />
 
@@ -105,7 +112,7 @@ const CreateEventForm = ({ user, token, friends }) => {
               type="datetime-local"
               name="date_start"
               value={fields.date_start}
-              onChange={handleFieldChange}
+              onChange={handleOnFieldChange}
               key="date-start-key"
             />
 
@@ -115,7 +122,7 @@ const CreateEventForm = ({ user, token, friends }) => {
               type="datetime-local"
               name="date_end"
               value={fields.date_end}
-              onChange={handleFieldChange}
+              onChange={handleOnFieldChange}
               key="date-end-key"
             />
 
@@ -125,7 +132,7 @@ const CreateEventForm = ({ user, token, friends }) => {
               type="text"
               name="location"
               value={fields.location}
-              onChange={handleFieldChange}
+              onChange={handleOnFieldChange}
               key="location-key"
             />
 
@@ -133,7 +140,7 @@ const CreateEventForm = ({ user, token, friends }) => {
 
             <DownshiftMultiSelect
               friends={friends}
-              onChange={handleMultiInviteChange}
+              onChange={handleOnFriendsInvitedChange}
               label="invite"
               name="invite"
               value={fields.friends_invited}
@@ -141,7 +148,7 @@ const CreateEventForm = ({ user, token, friends }) => {
 
             {/*<MultiComboBox*/}
             {/*  friends={friends}*/}
-            {/*  handleMultiInviteChange={handleMultiInviteChange}*/}
+            {/*  handleOnFriendsInvitedChange={handleOnFriendsInvitedChange}*/}
             {/*  key="invite-friends-key"*/}
             {/*  value={fields.friends_invited}*/}
             {/*/>*/}
@@ -149,7 +156,7 @@ const CreateEventForm = ({ user, token, friends }) => {
             {/*<MultiSelectInput*/}
             {/*  styles={inputStyles.input}*/}
             {/*  label="invite"*/}
-            {/*  onChange={handleMultiInviteChange}*/}
+            {/*  onChange={handleOnFriendsInvitedChange}*/}
             {/*  options={friends}*/}
             {/*  name="invite"*/}
             {/*  inputId="invite"*/}
