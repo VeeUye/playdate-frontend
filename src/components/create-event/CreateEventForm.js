@@ -60,15 +60,17 @@ const CreateEventForm = ({ user, token, friends }) => {
   };
 
   const handleMultiInviteChange = (event) => {
-    console.log(event.target.value, "---friends");
     const updateArr = fields.friends_invited;
-    updateArr.push(event.target.value);
-    console.log(updateArr, "----update");
-    setFields({
-      ...fields,
+    if (!updateArr.includes(event.target.value)) {
+      updateArr.push(event.target.value);
+      console.log(updateArr, "----update");
+      setFields({
+        ...fields,
 
-      ["friends_invited"]: updateArr,
-    });
+        ["friends_invited"]: updateArr,
+      });
+    }
+    console.log("This friend has already been invited");
   };
 
   return (
@@ -168,8 +170,6 @@ const CreateEventForm = ({ user, token, friends }) => {
   );
 };
 
-export default CreateEventForm;
-
 // sort proptypes
 
 CreateEventForm.propTypes = {
@@ -182,3 +182,5 @@ CreateEventForm.propTypes = {
     })
   ),
 };
+
+export default CreateEventForm;
