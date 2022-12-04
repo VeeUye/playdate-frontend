@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelect } from "downshift";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import styles from "./index.module.css";
 
 function MultiSelect({ friends, onChange, value }) {
   function itemToString(item) {
@@ -59,33 +60,40 @@ function MultiSelect({ friends, onChange, value }) {
         }
       },
     });
+
+    const pluralFriends = value.length > 1 ? "friends" : "friend";
+
     const buttonText = value.length
-      ? `${value.length} friends selected`
-      : "Friends";
+      ? `${value.length} ${pluralFriends} selected`
+      : "Invite friends";
 
     return (
       <div>
-        <div className="w-72 flex flex-col gap-1">
-          <label {...getLabelProps()}>Invite friends:</label>
-          <div
-            className="p-2 bg-white flex justify-between cursor-pointer"
-            {...getToggleButtonProps()}
-          >
-            <span>{buttonText}</span>
-            <span className="px-2">{isOpen ? <>&#8593;</> : <>&#8595;</>}</span>
+        <div className={styles.outer}>
+          <label className={styles.label} {...getLabelProps()}>
+            Invite friends:
+          </label>
+          <div className={styles.multiSelectButton} {...getToggleButtonProps()}>
+            <span className={styles.buttonText}>{buttonText}</span>
+            <span className={styles.arrow}>
+              {isOpen ? <>&#8593;</> : <>&#8595;</>}
+            </span>
           </div>
         </div>
         <ul
           {...getMenuProps()}
-          className="absolute w-72 p-0 bg-white shadow-md max-h-80 overflow-scroll"
+          className={classNames(
+            { [styles.dropdownListOpen]: isOpen },
+            styles.dropdownlist
+          )}
         >
           {isOpen &&
             friends.map((item, index) => (
               <li
                 className={classNames(
-                  highlightedIndex === index && "bg-blue-300",
-                  selectedItem === item && "font-bold",
-                  "py-2 px-3 shadow-sm flex gap-3 items-center"
+                  highlightedIndex === index && styles.highlightedListItem,
+                  selectedItem === item && styles.selectedListItem,
+                  styles.listItem
                 )}
                 key={`${item.value}${index}`}
                 {...getItemProps({
@@ -96,13 +104,13 @@ function MultiSelect({ friends, onChange, value }) {
               >
                 <input
                   type="checkbox"
-                  className="h-5 w-5"
+                  className={styles.input}
                   checked={selectedItem.includes(item.label)}
                   value={item.label}
                   onChange={onChange}
                 />
-                <div className="flex flex-col">
-                  <span className="text-sm text-gray-700">{item.label}</span>
+                <div>
+                  <span className={styles.listItemName}>{item.label}</span>
                 </div>
               </li>
             ))}
@@ -117,8 +125,8 @@ function MultiSelect({ friends, onChange, value }) {
 MultiSelect.propTypes = {
   friends: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
+      value: PropTypes.string,
+      label: PropTypes.string,
     })
   ).isRequired,
   onChange: PropTypes.func.isRequired,

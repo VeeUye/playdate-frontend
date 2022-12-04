@@ -136,8 +136,6 @@ const CreateEventForm = ({ user, token, friends }) => {
               key="location-key"
             />
 
-            {/*Include DownshiftMulti Select below */}
-
             <MultiSelect
               friends={friends}
               onChange={handleOnFriendsInvitedChange}
@@ -176,8 +174,6 @@ const CreateEventForm = ({ user, token, friends }) => {
     </>
   );
 };
-
-// sort proptypes
 
 CreateEventForm.propTypes = {
   user: PropTypes.object.isRequired,
