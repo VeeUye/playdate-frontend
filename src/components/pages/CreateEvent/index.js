@@ -9,7 +9,7 @@ import LoadSpinner from "../../load-spinner/LoadSpinner";
 
 import Image from "../../../assets/images/float.svg";
 
-import styles from "./create-event.module.css";
+import styles from "./index.module.css";
 import titleStyles from "../../atoms/small-title/small-title.module.css";
 import classNames from "classnames";
 
