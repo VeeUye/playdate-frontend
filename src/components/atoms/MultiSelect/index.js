@@ -3,7 +3,7 @@ import { useSelect } from "downshift";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
-function DownshiftMultiSelect({ friends, onChange, value }) {
+function MultiSelect({ friends, onChange, value }) {
   function itemToString(item) {
     return item ? item.label : "";
   }
@@ -114,7 +114,7 @@ function DownshiftMultiSelect({ friends, onChange, value }) {
   return <Select />;
 }
 
-DownshiftMultiSelect.propTypes = {
+MultiSelect.propTypes = {
   friends: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string.isRequired,
@@ -125,4 +125,4 @@ DownshiftMultiSelect.propTypes = {
   value: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default DownshiftMultiSelect;
+export default MultiSelect;

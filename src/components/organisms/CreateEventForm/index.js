@@ -8,7 +8,7 @@ import Button from "../../atoms/button/Button";
 import formStyles from "./index.module.css";
 import inputStyles from "../../atoms/form-input/form-input.module.css";
 import buttonStyles from "../../atoms/button/button.module.css";
-import DownshiftMultiSelect from "../../atoms/form-input/DownshiftMultiSelect";
+import MultiSelect from "../../atoms/MultiSelect";
 
 const CreateEventForm = ({ user, token, friends }) => {
   const history = useHistory();
@@ -138,7 +138,7 @@ const CreateEventForm = ({ user, token, friends }) => {
 
             {/*Include DownshiftMulti Select below */}
 
-            <DownshiftMultiSelect
+            <MultiSelect
               friends={friends}
               onChange={handleOnFriendsInvitedChange}
               label="invite"
