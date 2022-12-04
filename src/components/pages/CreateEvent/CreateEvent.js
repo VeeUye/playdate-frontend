@@ -4,7 +4,7 @@ import getUserFriends from "../../../requests/users/getUserFriends";
 
 import screenSize from "../../../functions/screenSize";
 import SmallTitle from "../../atoms/small-title/SmallTitle";
-import CreateEventForm from "../../create-event/CreateEventForm";
+import CreateEventForm from "../../organisms/CreateEventForm";
 import LoadSpinner from "../../load-spinner/LoadSpinner";
 
 import Image from "../../../assets/images/float.svg";
