@@ -10,7 +10,7 @@ import SignIn from "./sign-in/SignIn";
 // import PropTypes from "prop-types";
 import MyProfile from "./my-profile/MyProfile";
 import MyEvents from "./myEvents/MyEvents";
-import CreateEvent from "./pages/CreateEvent";
+import CreateEvent from "./pages/CreateEvent/index";
 import CreateProfile from "./create-profile/CreateProfile";
 import EditProfile from "./edit-profile/EditProfile";
 import "../styles/App.css";
