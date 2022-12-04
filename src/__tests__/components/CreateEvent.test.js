@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
-import CreateEvent from "../../components/create-event/CreateEvent";
+import CreateEvent from "../../components/pages/CreateEvent/CreateEvent";
 import { UserContext } from "../../contexts/AuthContext";
 
 describe("CreateEvent", () => {

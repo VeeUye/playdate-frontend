@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { UserAuth } from "../../contexts/AuthContext";
-import getUserFriends from "../../requests/users/getUserFriends";
+import { UserAuth } from "../../../contexts/AuthContext";
+import getUserFriends from "../../../requests/users/getUserFriends";
 
-import screenSize from "../../functions/screenSize";
-import SmallTitle from "../atoms/small-title/SmallTitle";
-import CreateEventForm from "./CreateEventForm";
-import LoadSpinner from "../load-spinner/LoadSpinner";
+import screenSize from "../../../functions/screenSize";
+import SmallTitle from "../../atoms/small-title/SmallTitle";
+import CreateEventForm from "../../create-event/CreateEventForm";
+import LoadSpinner from "../../load-spinner/LoadSpinner";
 
-import Image from "../../assets/images/float.svg";
+import Image from "../../../assets/images/float.svg";
 
 import styles from "./create-event.module.css";
-import titleStyles from "../atoms/small-title/small-title.module.css";
+import titleStyles from "../../atoms/small-title/small-title.module.css";
 import classNames from "classnames";
 
 const CreateEvent = () => {
