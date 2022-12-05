@@ -144,23 +144,6 @@ const CreateEventForm = ({ user, token, friends }) => {
               value={fields.friends_invited}
             />
 
-            {/*<MultiComboBox*/}
-            {/*  friends={friends}*/}
-            {/*  handleOnFriendsInvitedChange={handleOnFriendsInvitedChange}*/}
-            {/*  key="invite-friends-key"*/}
-            {/*  value={fields.friends_invited}*/}
-            {/*/>*/}
-
-            {/*<MultiSelectInput*/}
-            {/*  styles={inputStyles.input}*/}
-            {/*  label="invite"*/}
-            {/*  onChange={handleOnFriendsInvitedChange}*/}
-            {/*  options={friends}*/}
-            {/*  name="invite"*/}
-            {/*  inputId="invite"*/}
-            {/*  placeholder="Select..."*/}
-            {/*/>*/}
-
             <Alert message={alert.message} success={alert.isSuccess} />
 
             <Button
