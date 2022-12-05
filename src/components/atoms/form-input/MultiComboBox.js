@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useCombobox, useMultipleSelection } from "downshift";
 import classNames from "classnames";
-import styles from "../MultiSelect/index.module.css";
+import styles from "../MultiSelect/styles.module.css";
 
 const MultiComboBox = ({ friends, handleMultiInviteChange }) => {
   const initialSelectedItems = [friends[0]];

@@ -5,7 +5,7 @@ import FormInput from "../../atoms/form-input/FormInput";
 import postEvent from "../../../requests/events/postEvent";
 import Alert from "../../../requests/alert/Alert";
 import Button from "../../atoms/button/Button";
-import formStyles from "./index.module.css";
+import formStyles from "./styles.module.css";
 import inputStyles from "../../atoms/form-input/form-input.module.css";
 import buttonStyles from "../../atoms/button/button.module.css";
 import MultiSelect from "../../atoms/MultiSelect";

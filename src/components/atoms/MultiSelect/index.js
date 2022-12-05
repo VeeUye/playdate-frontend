@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelect } from "downshift";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import styles from "./index.module.css";
+import styles from "./styles.module.css";
 
 function MultiSelect({ friends, onChange, value }) {
   function itemToString(item) {
