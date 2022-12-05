@@ -44,8 +44,6 @@ function MultiSelect({ friends, onChange, value }) {
           return;
         }
 
-        console.log(selectedItem, "---selecteditem");
-
         const index = selectedItems.indexOf(selectedItem);
 
         if (index > 0) {
@@ -75,7 +73,7 @@ function MultiSelect({ friends, onChange, value }) {
           </label>
           <div className={styles.multiSelectButton} {...getToggleButtonProps()}>
             <span className={styles.buttonText}>{buttonText}</span>
-            <span className={styles.arrow}>
+            <span className={styles.arrow} data-testid="arrow-icon">
               {isOpen ? <>&#8593;</> : <>&#8595;</>}
             </span>
           </div>
