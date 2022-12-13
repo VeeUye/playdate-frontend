@@ -11,17 +11,10 @@ describe("MultiSelect", () => {
     { value: "hUt11WDzxEYMvT3Tyh9kGm1JVaHw", label: "Mrs Powell" },
   ];
 
-  const stubbedInputValue = [
-    "Chief Wiggum",
-    "Ned Flanders",
-    "Luann Van Houten",
-  ];
-
   const setUp = () => {
     const initialProps = {
       friends: stubbedOptions,
-      onChange: jest.fn,
-      value: stubbedInputValue,
+      onChange: jest.fn(),
     };
 
     render(<MultiSelect {...initialProps} />);
@@ -82,10 +75,66 @@ describe("MultiSelect", () => {
     expect(options[4]).toHaveTextContent("Mrs Powell");
   });
 
-  // it("pluralises the input text where more than one friend as been selected", () => {
-  //   setUp();
-  //
-  //   fireEvent.(screen.getByRole("option", { value: "Chief Wiggum" }));
-  //   fireEvent.click(screen.getByRole("option", { value: "Ned Flanders" }));
-  // });
+  it("it selects a friend to invite when an option checkbox is checked", () => {
+    setUp();
+
+    const button = screen.getByTestId("arrow-icon");
+
+    fireEvent.click(button);
+
+    const options = screen.getAllByRole("option");
+
+    fireEvent.click(options[0]);
+    fireEvent.click(options[1]);
+    fireEvent.click(options[4]);
+
+    expect(options[0]).toHaveAttribute("aria-selected", "true");
+    expect(options[1]).toHaveAttribute("aria-selected", "true");
+    expect(options[2]).toHaveAttribute("aria-selected", "false");
+    expect(options[3]).toHaveAttribute("aria-selected", "false");
+    expect(options[4]).toHaveAttribute("aria-selected", "true");
+  });
+
+  it("pluralises the input text where more than one friend as been selected", () => {
+    setUp();
+
+    const button = screen.getByTestId("arrow-icon");
+    fireEvent.click(button);
+
+    const options = screen.getAllByRole("option");
+
+    fireEvent.click(options[0]);
+
+    expect(screen.getByTestId("button-text")).toHaveTextContent(
+      "friend selected"
+    );
+    expect(screen.getByTestId("button-text")).not.toHaveTextContent(
+      "friends selected"
+    );
+
+    fireEvent.click(options[1]);
+
+    expect(screen.getByTestId("button-text")).toHaveTextContent(
+      "friends selected"
+    );
+    expect(screen.getByTestId("button-text")).not.toHaveTextContent(
+      "friend selected"
+    );
+  });
+
+  it("calls onChange with the selected option when an option has been selected", () => {
+    const mockOnChange = jest.fn();
+    setUp({ onChange: mockOnChange });
+
+    const button = screen.getByTestId("arrow-icon");
+    fireEvent.click(button);
+
+    const options = screen.getAllByRole("option");
+
+    fireEvent.click(options[0]);
+    fireEvent.click(options[1]);
+    fireEvent.click(button);
+
+    expect(mockOnChange).toHaveBeenCalledWith("Chief Wiggum");
+  });
 });

@@ -39,6 +39,7 @@ function MultiSelect({ friends, onChange, value }) {
       itemToString,
       stateReducer,
       selectedItem: value,
+      defaultSelectedItem: 0,
       onSelectedItemChange: ({ selectedItem }) => {
         if (!selectedItem) {
           return;
@@ -59,11 +60,13 @@ function MultiSelect({ friends, onChange, value }) {
       },
     });
 
-    const pluralFriends = value.length > 1 ? "friends" : "friend";
+    const pluralFriends =
+      selectedItems && selectedItems.length > 1 ? "friends" : "friend";
 
-    const buttonText = value.length
-      ? `${value.length} ${pluralFriends} selected`
-      : "Invite friends";
+    const buttonText =
+      selectedItems && selectedItems.length
+        ? `${selectedItems.length} ${pluralFriends} selected`
+        : "Invite friends";
 
     return (
       <div>
@@ -72,7 +75,9 @@ function MultiSelect({ friends, onChange, value }) {
             Invite friends:
           </label>
           <div className={styles.multiSelectButton} {...getToggleButtonProps()}>
-            <span className={styles.buttonText}>{buttonText}</span>
+            <span className={styles.buttonText} data-testid="button-text">
+              {buttonText}
+            </span>
             <span className={styles.arrow} data-testid="arrow-icon">
               {isOpen ? <>&#8593;</> : <>&#8595;</>}
             </span>
@@ -103,9 +108,10 @@ function MultiSelect({ friends, onChange, value }) {
                 <input
                   type="checkbox"
                   className={styles.input}
-                  checked={selectedItem.includes(item.label)}
+                  checked={selectedItems.includes(item)}
                   value={item.label}
                   onChange={onChange}
+                  data-testid={`option-${item.value}`}
                 />
                 <div>
                   <span className={styles.listItemName}>{item.label}</span>

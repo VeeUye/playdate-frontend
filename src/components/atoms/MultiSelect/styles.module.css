@@ -55,7 +55,7 @@
 */
 
 .dropdownlist {
-    overflow: scroll;
+    overflow: hidden;
     position: relative;
     padding: 0;
     background-color: #ffffff;
