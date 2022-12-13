@@ -64,7 +64,7 @@ function MultiSelect({ friends, onChange, value }) {
       selectedItems && selectedItems.length > 1 ? "friends" : "friend";
 
     const buttonText =
-      selectedItems && selectedItems.length
+      selectedItems && selectedItems.length > 0
         ? `${selectedItems.length} ${pluralFriends} selected`
         : "Invite friends";
 
@@ -83,7 +83,7 @@ function MultiSelect({ friends, onChange, value }) {
             </span>
           </div>
         </div>
-        <ul
+        <div
           {...getMenuProps()}
           className={classNames(
             { [styles.dropdownListOpen]: isOpen },
@@ -92,33 +92,35 @@ function MultiSelect({ friends, onChange, value }) {
         >
           {isOpen &&
             friends.map((item, index) => (
-              <li
-                className={classNames(
-                  highlightedIndex === index && styles.highlightedListItem,
-                  selectedItem === item && styles.selectedListItem,
-                  styles.listItem
-                )}
-                key={`${item.value}${index}`}
+              <label
+                key={item.value}
                 {...getItemProps({
                   item,
                   index,
                   "aria-selected": selectedItems.includes(item),
                 })}
+                className={classNames(
+                  highlightedIndex === index && styles.highlightedListItem,
+                  selectedItem === item && styles.selectedListItem,
+                  styles.listItem
+                )}
+                htmlFor={item.value}
               >
                 <input
                   type="checkbox"
                   className={styles.input}
-                  checked={selectedItems.includes(item)}
                   value={item.label}
+                  id={item.value}
                   onChange={onChange}
+                  checked={selectedItems.includes(item)}
                   data-testid={`option-${item.value}`}
                 />
                 <div>
                   <span className={styles.listItemName}>{item.label}</span>
                 </div>
-              </li>
+              </label>
             ))}
-        </ul>
+        </div>
       </div>
     );
   }

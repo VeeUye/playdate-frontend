@@ -122,7 +122,7 @@ describe("MultiSelect", () => {
     );
   });
 
-  it("calls onChange with the selected option when an option has been selected", () => {
+  xit("calls onChange with the selected option when an option has been selected", () => {
     const mockOnChange = jest.fn();
     setUp({ onChange: mockOnChange });
 
