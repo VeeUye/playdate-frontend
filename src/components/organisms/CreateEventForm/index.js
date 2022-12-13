@@ -62,22 +62,29 @@ const CreateEventForm = ({ user, token, friends }) => {
   const handleOnFriendsInvitedChange = (event) => {
     const friendsInvited = fields.friends_invited;
 
-    const addFriendToFriendsInvited = () => {
+    const addToFriendsInvited = () => {
       friendsInvited.push(event.target.value);
-      console.log(friendsInvited, "----updated");
+      console.log(friendsInvited, "----friend added");
       setFields({
         ...fields,
         ["friends_invited"]: friendsInvited,
       });
     };
 
-    const friendNotAlreadyInvited = !friendsInvited.includes(
-      event.target.value
-    );
+    const removeFromFriendsInvited = () => {
+      const friendsUninvited = friendsInvited.filter(
+        (friend) => friend !== event.target.value
+      );
+      console.log(friendsUninvited, "----friend removed");
+      setFields({
+        ...fields,
+        ["friends_invited"]: friendsUninvited,
+      });
+    };
 
-    friendNotAlreadyInvited
-      ? addFriendToFriendsInvited()
-      : console.log("This friend has already been invited");
+    const friendShouldBeInvited = !friendsInvited.includes(event.target.value);
+
+    friendShouldBeInvited ? addToFriendsInvited() : removeFromFriendsInvited();
   };
 
   return (
