@@ -59,11 +59,11 @@ const CreateEventForm = ({ user, token, friends }) => {
     });
   };
 
-  const handleOnFriendsInvitedChange = (event) => {
+  const handleOnFriendsInvitedChange = (selectedItem) => {
     const friendsInvited = fields.friends_invited;
 
     const addToFriendsInvited = () => {
-      friendsInvited.push(event.target.value);
+      friendsInvited.push(selectedItem.label);
       console.log(friendsInvited, "----friend added");
       setFields({
         ...fields,
@@ -73,7 +73,7 @@ const CreateEventForm = ({ user, token, friends }) => {
 
     const removeFromFriendsInvited = () => {
       const friendsUninvited = friendsInvited.filter(
-        (friend) => friend !== event.target.value
+        (friend) => friend !== selectedItem.label
       );
       console.log(friendsUninvited, "----friend removed");
       setFields({
@@ -82,7 +82,7 @@ const CreateEventForm = ({ user, token, friends }) => {
       });
     };
 
-    const friendShouldBeInvited = !friendsInvited.includes(event.target.value);
+    const friendShouldBeInvited = !friendsInvited.includes(selectedItem.label);
 
     friendShouldBeInvited ? addToFriendsInvited() : removeFromFriendsInvited();
   };

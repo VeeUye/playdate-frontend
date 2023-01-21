@@ -4,86 +4,80 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import styles from "./styles.module.css";
 
-function MultiSelect({ friends, onChange, value }) {
-  function itemToString(item) {
-    return item ? item.label : "";
+function itemToString(item) {
+  return item ? item.label : "";
+}
+function stateReducer(state, actionAndChanges) {
+  const { changes, type } = actionAndChanges;
+  switch (type) {
+    case useSelect.stateChangeTypes.MenuKeyDownEnter:
+    case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
+    case useSelect.stateChangeTypes.ItemClick:
+      return {
+        ...changes,
+        isOpen: true, // keep menu open after selection.
+        highlightedIndex: state.highlightedIndex,
+      };
+    default:
+      return changes;
   }
-  function stateReducer(state, actionAndChanges) {
-    const { changes, type } = actionAndChanges;
-    switch (type) {
-      case useSelect.stateChangeTypes.MenuKeyDownEnter:
-      case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-      case useSelect.stateChangeTypes.ItemClick:
-        return {
-          ...changes,
-          isOpen: true, // keep menu open after selection.
-          highlightedIndex: state.highlightedIndex,
-        };
-      default:
-        return changes;
+}
+
+function MultiSelect({ friends, onChange }) {
+  const onSelectedItemChange = ({ selectedItem }) => {
+    if (typeof onChange !== "undefined" && selectedItem) onChange(selectedItem);
+
+    const index = selectedItems.indexOf(selectedItem);
+
+    if (index > 0) {
+      setSelectedItems([
+        ...selectedItems.slice(0, index),
+        ...selectedItems.slice(index + 1),
+      ]);
+    } else if (index === 0) {
+      setSelectedItems([...selectedItems.slice(1)]);
+    } else {
+      setSelectedItems([...selectedItems, selectedItem]);
     }
-  }
+  };
 
-  function Select() {
-    const [selectedItems, setSelectedItems] = useState([]);
-    const {
-      isOpen,
-      selectedItem,
-      getToggleButtonProps,
-      getLabelProps,
-      getMenuProps,
-      highlightedIndex,
-      getItemProps,
-    } = useSelect({
-      items: friends,
-      itemToString,
-      stateReducer,
-      selectedItem: value,
-      defaultSelectedItem: 0,
-      onSelectedItemChange: ({ selectedItem }) => {
-        if (!selectedItem) {
-          return;
-        }
+  const [selectedItems, setSelectedItems] = useState([]);
+  const {
+    isOpen,
+    selectedItem,
+    getToggleButtonProps,
+    getLabelProps,
+    getMenuProps,
+    highlightedIndex,
+    getItemProps,
+  } = useSelect({
+    items: friends,
+    itemToString,
+    stateReducer,
+    onSelectedItemChange,
+  });
 
-        const index = selectedItems.indexOf(selectedItem);
+  const pluralFriends = selectedItems.length > 1 ? "friends" : "friend";
 
-        if (index > 0) {
-          setSelectedItems([
-            ...selectedItems.slice(0, index),
-            ...selectedItems.slice(index + 1),
-          ]);
-        } else if (index === 0) {
-          setSelectedItems([...selectedItems.slice(1)]);
-        } else {
-          setSelectedItems([...selectedItems, selectedItem]);
-        }
-      },
-    });
+  const buttonText = selectedItems.length
+    ? `${selectedItems.length} ${pluralFriends} selected`
+    : "Invite friends";
 
-    const pluralFriends =
-      selectedItems && selectedItems.length > 1 ? "friends" : "friend";
-
-    const buttonText =
-      selectedItems && selectedItems.length > 0
-        ? `${selectedItems.length} ${pluralFriends} selected`
-        : "Invite friends";
-
-    return (
-      <div>
-        <div className={styles.outer}>
-          <label className={styles.label} {...getLabelProps()}>
-            Invite friends:
-          </label>
-          <div className={styles.multiSelectButton} {...getToggleButtonProps()}>
-            <span className={styles.buttonText} data-testid="button-text">
-              {buttonText}
-            </span>
-            <span className={styles.arrow} data-testid="arrow-icon">
-              {isOpen ? <>&#8593;</> : <>&#8595;</>}
-            </span>
-          </div>
+  return (
+    <div>
+      <div className={styles.outer}>
+        <label className={styles.label} {...getLabelProps()}>
+          Invite friends:
+        </label>
+        <div className={styles.multiSelectButton} {...getToggleButtonProps()}>
+          <span className={styles.buttonText} data-testid="button-text">
+            {buttonText}
+          </span>
+          <span className={styles.arrow} data-testid="arrow-icon">
+            {isOpen ? <>&#8593;</> : <>&#8595;</>}
+          </span>
         </div>
-        <div
+        <ul
           {...getMenuProps()}
           className={classNames(
             { [styles.dropdownListOpen]: isOpen },
@@ -92,40 +86,37 @@ function MultiSelect({ friends, onChange, value }) {
         >
           {isOpen &&
             friends.map((item, index) => (
-              <label
-                key={item.value}
+              <li
+                key={`${item}${item.label}`}
                 {...getItemProps({
                   item,
                   index,
-                  "aria-selected": selectedItems.includes(item),
+                  "aria-selected": selectedItem === item,
                 })}
-                className={classNames(
-                  highlightedIndex === index && styles.highlightedListItem,
-                  selectedItem === item && styles.selectedListItem,
-                  styles.listItem
-                )}
-                htmlFor={item.value}
+                className={classNames(styles.listItem, {
+                  [styles.highlightedListItem]: highlightedIndex === index,
+                  [styles.selectedListItem]: selectedItem === item,
+                })}
               >
                 <input
                   type="checkbox"
                   className={styles.input}
                   value={item.label}
                   id={item.value}
-                  onChange={onChange}
+                  onChange={() => {}}
                   checked={selectedItems.includes(item)}
                   data-testid={`option-${item.value}`}
                 />
-                <div>
+                <label htmlFor={item.value} className={styles.testLabel}>
+                  {" "}
                   <span className={styles.listItemName}>{item.label}</span>
-                </div>
-              </label>
+                </label>
+              </li>
             ))}
-        </div>
+        </ul>
       </div>
-    );
-  }
-
-  return <Select />;
+    </div>
+  );
 }
 
 MultiSelect.propTypes = {
