@@ -41,7 +41,7 @@ const CreateEventForm = ({ user, token, friends }) => {
 
   const [alert, setAlert] = useState(initialState.alert);
 
-  const handleCreateEvent = (event) => {
+  const handleSubmitForm = (event) => {
     event.preventDefault();
     dates.date_start = new Date(fields.date_start);
     dates.date_end = new Date(fields.date_end);
@@ -91,7 +91,7 @@ const CreateEventForm = ({ user, token, friends }) => {
 
   return (
     <>
-      <form role="form" onSubmit={handleCreateEvent} key="create-event-key">
+      <form role="form" onSubmit={handleSubmitForm} key="create-event-key">
         <div className={formStyles.field1}>
           <FormInput
             className={inputStyles.input}
