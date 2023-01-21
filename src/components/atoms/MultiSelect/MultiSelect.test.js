@@ -11,13 +11,18 @@ describe("MultiSelect", () => {
     { value: "hUt11WDzxEYMvT3Tyh9kGm1JVaHw", label: "Mrs Powell" },
   ];
 
-  const setUp = () => {
+  const setUp = (props) => {
     const initialProps = {
       friends: stubbedOptions,
       onChange: jest.fn(),
     };
 
-    render(<MultiSelect {...initialProps} />);
+    const combinedProps = {
+      ...initialProps,
+      ...props,
+    };
+
+    render(<MultiSelect {...combinedProps} />);
   };
 
   it("renders with the dropdown list initially closed", () => {
@@ -122,8 +127,9 @@ describe("MultiSelect", () => {
     );
   });
 
-  xit("calls onChange with the selected option when an option has been selected", () => {
+  it("calls onChange with the correct selected item", () => {
     const mockOnChange = jest.fn();
+
     setUp({ onChange: mockOnChange });
 
     const button = screen.getByTestId("arrow-icon");
@@ -132,9 +138,10 @@ describe("MultiSelect", () => {
     const options = screen.getAllByRole("option");
 
     fireEvent.click(options[0]);
-    fireEvent.click(options[1]);
-    fireEvent.click(button);
 
-    expect(mockOnChange).toHaveBeenCalledWith("Chief Wiggum");
+    expect(mockOnChange).toHaveBeenCalledWith({
+      label: "Chief Wiggum",
+      value: "FaoLwxoE2ub6qYMZRACNiNEth9OH",
+    });
   });
 });

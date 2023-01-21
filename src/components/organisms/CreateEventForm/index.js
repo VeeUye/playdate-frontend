@@ -91,74 +91,72 @@ const CreateEventForm = ({ user, token, friends }) => {
     <>
       <form role="form" onSubmit={handleCreateEvent} key="create-event-key">
         <div className={formStyles.field1}>
-          <div>
-            <FormInput
-              className={inputStyles.input}
-              label="Event Name"
-              type="text"
-              name="name"
-              placeholder="Event name"
-              value={fields.name}
-              onChange={handleOnFieldChange}
-              key="event-name-key"
-            />
+          <FormInput
+            className={inputStyles.input}
+            label="Event Name"
+            type="text"
+            name="name"
+            placeholder="Event name"
+            value={fields.name}
+            onChange={handleOnFieldChange}
+            key="event-name-key"
+          />
 
-            <FormInput
-              className={inputStyles.input}
-              label="Description"
-              type="text"
-              name="description"
-              value={fields.description}
-              onChange={handleOnFieldChange}
-              key="description-key"
-            />
+          <FormInput
+            className={inputStyles.input}
+            label="Description"
+            type="text"
+            name="description"
+            value={fields.description}
+            onChange={handleOnFieldChange}
+            key="description-key"
+          />
 
-            <FormInput
-              className={inputStyles.input}
-              label="Start"
-              type="datetime-local"
-              name="date_start"
-              value={fields.date_start}
-              onChange={handleOnFieldChange}
-              key="date-start-key"
-            />
+          <FormInput
+            className={inputStyles.input}
+            label="Start"
+            type="datetime-local"
+            name="date_start"
+            value={fields.date_start}
+            onChange={handleOnFieldChange}
+            key="date-start-key"
+          />
 
-            <FormInput
-              className={inputStyles.input}
-              label="End"
-              type="datetime-local"
-              name="date_end"
-              value={fields.date_end}
-              onChange={handleOnFieldChange}
-              key="date-end-key"
-            />
+          <FormInput
+            className={inputStyles.input}
+            label="End"
+            type="datetime-local"
+            name="date_end"
+            value={fields.date_end}
+            onChange={handleOnFieldChange}
+            key="date-end-key"
+          />
 
-            <FormInput
-              className={inputStyles.input}
-              label="Location"
-              type="text"
-              name="location"
-              value={fields.location}
-              onChange={handleOnFieldChange}
-              key="location-key"
-            />
+          <FormInput
+            className={inputStyles.input}
+            label="Location"
+            type="text"
+            name="location"
+            value={fields.location}
+            onChange={handleOnFieldChange}
+            key="location-key"
+          />
 
-            <MultiSelect
-              friends={friends}
-              onChange={handleOnFriendsInvitedChange}
-              label="invite"
-              name="invite"
-              value={fields.friends_invited}
-            />
+          <MultiSelect
+            friends={friends}
+            onChange={handleOnFriendsInvitedChange}
+            label="invite"
+            name="invite"
+            value={fields.friends_invited}
+          />
 
-            <Alert message={alert.message} success={alert.isSuccess} />
+          <Alert message={alert.message} success={alert.isSuccess} />
 
-            <Button
-              className={buttonStyles.createEvent}
-              type="submit"
-              label="Create Event"
-            />
-          </div>
+          <Button
+            className={buttonStyles.createEvent}
+            type="submit"
+            label="Create Event"
+          />
         </div>
       </form>
     </>

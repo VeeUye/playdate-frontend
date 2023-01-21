@@ -18,6 +18,7 @@ function stateReducer(state, actionAndChanges) {
         isOpen: true, // keep menu open after selection.
         highlightedIndex: state.highlightedIndex,
       };
+
     default:
       return changes;
   }
@@ -25,6 +26,9 @@ function stateReducer(state, actionAndChanges) {
 
 function MultiSelect({ friends, onChange }) {
   const onSelectedItemChange = ({ selectedItem }) => {
+    if (!selectedItem) {
+      return;
+    }
     if (typeof onChange !== "undefined" && selectedItem) onChange(selectedItem);
 
     const index = selectedItems.indexOf(selectedItem);
@@ -44,7 +48,6 @@ function MultiSelect({ friends, onChange }) {
   const [selectedItems, setSelectedItems] = useState([]);
   const {
     isOpen,
-    selectedItem,
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
@@ -53,6 +56,7 @@ function MultiSelect({ friends, onChange }) {
   } = useSelect({
     items: friends,
     itemToString,
+    selectedItem: null,
     stateReducer,
     onSelectedItemChange,
   });
@@ -64,57 +68,59 @@ function MultiSelect({ friends, onChange }) {
     : "Invite friends";
 
   return (
-    <div>
-      <div className={styles.outer}>
-        <label className={styles.label} {...getLabelProps()}>
-          Invite friends:
-        </label>
-        <div className={styles.multiSelectButton} {...getToggleButtonProps()}>
-          <span className={styles.buttonText} data-testid="button-text">
-            {buttonText}
-          </span>
-          <span className={styles.arrow} data-testid="arrow-icon">
-            {isOpen ? <>&#8593;</> : <>&#8595;</>}
-          </span>
-        </div>
-        <ul
-          {...getMenuProps()}
-          className={classNames(
-            { [styles.dropdownListOpen]: isOpen },
-            styles.dropdownlist
-          )}
-        >
-          {isOpen &&
-            friends.map((item, index) => (
-              <li
-                key={`${item}${item.label}`}
-                {...getItemProps({
-                  item,
-                  index,
-                  "aria-selected": selectedItem === item,
-                })}
-                className={classNames(styles.listItem, {
-                  [styles.highlightedListItem]: highlightedIndex === index,
-                  [styles.selectedListItem]: selectedItem === item,
-                })}
-              >
-                <input
-                  type="checkbox"
-                  className={styles.input}
-                  value={item.label}
-                  id={item.value}
-                  onChange={() => {}}
-                  checked={selectedItems.includes(item)}
-                  data-testid={`option-${item.value}`}
-                />
-                <label htmlFor={item.value} className={styles.testLabel}>
-                  {" "}
-                  <span className={styles.listItemName}>{item.label}</span>
-                </label>
-              </li>
-            ))}
-        </ul>
+    <div className={styles.outer}>
+      <label className={styles.label} {...getLabelProps()}>
+        Invite friends:
+      </label>
+      <div className={styles.multiSelectButton} {...getToggleButtonProps()}>
+        <span className={styles.buttonText} data-testid="button-text">
+          {buttonText}
+        </span>
+        <span className={styles.arrow} data-testid="arrow-icon">
+          {isOpen ? <>&#8593;</> : <>&#8595;</>}
+        </span>
       </div>
+      <ul
+        {...getMenuProps()}
+        className={classNames(
+          { [styles.dropdownListOpen]: isOpen },
+          styles.dropdownlist
+        )}
+      >
+        {isOpen &&
+          friends.map((item, index) => (
+            <li
+              key={`${item}${item.label}`}
+              {...getItemProps({
+                item,
+                index,
+                "aria-selected": selectedItems.includes(item),
+              })}
+              className={classNames(styles.listItem, {
+                [styles.highlightedListItem]: highlightedIndex === index,
+              })}
+            >
+              <input
+                type="checkbox"
+                className={styles.input}
+                value={item.label}
+                onChange={() => {}}
+                checked={selectedItems.includes(item)}
+                data-testid={`option-${item.value}`}
+              />
+              <label htmlFor={item.value} className={styles.testLabel}>
+                {" "}
+                <span
+                  className={classNames(styles.listItemName, {
+                    [styles.listItemNameSelected]: selectedItems.includes(item),
+                  })}
+                >
+                  {item.label}
+                </span>
+              </label>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }

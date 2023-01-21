@@ -1,5 +1,6 @@
-/* MultiSelect
-//////////////////////////////////////////////////////////////////////////////*/
+
+/*MultiSelect*/
+/*=============================================*/
 
 .outer {
     display: flex;
@@ -10,11 +11,12 @@
     margin-left: 1rem;
     margin-right: 1rem;
     text-align: left;
-    width: 91%;
 }
 
 /* Button
 ////////////*/
+
+
 
 .label {
     display: block;
@@ -59,8 +61,8 @@
     position: relative;
     padding: 0;
     background-color: #ffffff;
-    width: 91%;
-    margin-left: 1rem;
+    width: 100%;
+    /*margin-left: 1rem;*/
     max-height: 20rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     z-index: 20;
@@ -97,10 +99,8 @@
 
 .listItemName {
     width: 1000px;
-    padding: 0;
     height: 2.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0 1rem;
     background: #ffffff;
     border: none;
     font-family: "Poppins";
@@ -109,6 +109,10 @@
     font-size: 1rem;
     line-height: 92.4%;
     color: #835932;
+}
+
+.listItemNameSelected {
+    font-weight: 600;
 }
 
 .buttonText {
