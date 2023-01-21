@@ -69,8 +69,12 @@ function MultiSelect({ friends, onChange }) {
 
   return (
     <div className={styles.outer}>
-      <label className={styles.label} {...getLabelProps()}>
-        Invite friends:
+      <label
+        className={styles.label}
+        {...getLabelProps()}
+        data-testid="invite-friends"
+      >
+        Invite friends
       </label>
       <div className={styles.multiSelectButton} {...getToggleButtonProps()}>
         <span className={styles.buttonText} data-testid="button-text">
@@ -109,7 +113,6 @@ function MultiSelect({ friends, onChange }) {
                 data-testid={`option-${item.value}`}
               />
               <label htmlFor={item.value} className={styles.testLabel}>
-                {" "}
                 <span
                   className={classNames(styles.listItemName, {
                     [styles.listItemNameSelected]: selectedItems.includes(item),

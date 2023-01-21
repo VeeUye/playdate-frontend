@@ -29,7 +29,7 @@ describe("MultiSelect", () => {
     setUp();
 
     expect(
-      screen.getByRole("combobox", { name: "Invite friends:", expanded: false })
+      screen.getByRole("combobox", { name: "Invite friends", expanded: false })
     ).toBeTruthy();
   });
 
@@ -41,7 +41,7 @@ describe("MultiSelect", () => {
     fireEvent.click(arrowIcon);
 
     expect(
-      screen.getByRole("combobox", { name: "Invite friends:", expanded: true })
+      screen.getByRole("combobox", { name: "Invite friends", expanded: true })
     ).toBeTruthy();
   });
 
@@ -53,13 +53,13 @@ describe("MultiSelect", () => {
     fireEvent.click(arrowIcon);
 
     expect(
-      screen.getByRole("combobox", { name: "Invite friends:", expanded: true })
+      screen.getByRole("combobox", { name: "Invite friends", expanded: true })
     ).toBeTruthy();
 
     fireEvent.click(arrowIcon);
 
     expect(
-      screen.getByRole("combobox", { name: "Invite friends:", expanded: false })
+      screen.getByRole("combobox", { name: "Invite friends", expanded: false })
     ).toBeTruthy();
   });
 
