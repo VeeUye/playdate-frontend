@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
+
 import FormInput from "../../atoms/form-input/FormInput";
 import postEvent from "../../../requests/events/postEvent";
 import Alert from "../../../requests/alert/Alert";
 import Button from "../../atoms/button/Button";
+import MultiSelect from "../../atoms/MultiSelect";
+
 import formStyles from "./styles.module.css";
 import inputStyles from "../../atoms/form-input/form-input.module.css";
 import buttonStyles from "../../atoms/button/button.module.css";
-import MultiSelect from "../../atoms/MultiSelect";
 
 const CreateEventForm = ({ user, token, friends }) => {
   const history = useHistory();
