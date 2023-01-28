@@ -9,18 +9,21 @@ export const postEvent = async (fields, userIdToken, setAlert) => {
     const res = await axios.post(`${BASE_URL}/events`, fields, {
       headers: { Authorization: `Bearer ${userIdToken}` },
     });
+
     setAlert({
       message: "Event Created",
       isSuccess: true,
     });
+
     console.log(res, "res");
+    return res;
   } catch (err) {
     setAlert({
       message: "Server Error. Please try again later",
       isSuccess: false,
     });
+
     console.log(err);
+    return err;
   }
 };
-
-export default postEvent;
