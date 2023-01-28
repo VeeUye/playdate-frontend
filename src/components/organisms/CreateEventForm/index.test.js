@@ -1,9 +1,26 @@
 import React from "react";
 import { fireEvent, render, screen, within } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import MockAdapter from "axios-mock-adapter";
 import { UserContext } from "../../../contexts/AuthContext";
 import CreateEvent from "../../../components/pages/CreateEvent/index";
+import postEvent, { BASE_URL } from "../../../requests/events/postEvent";
+
+const axios = require("axios");
+
+// const mock = new MockAdapter(axios);
 
 describe("CreateEvent", () => {
+  let mock;
+
+  beforeAll(() => {
+    mock = new MockAdapter(axios);
+  });
+
+  afterEach(() => {
+    mock.reset();
+  });
+
   const nameField = () => screen.getByLabelText("Event Name");
   const descriptionField = () => screen.getByLabelText("Description");
   const startDateField = () => screen.getByLabelText("Start");
@@ -23,11 +40,53 @@ describe("CreateEvent", () => {
     token: "",
   };
 
-  const setup = () => {
+  const stubbedFields = {
+    date_end: "2024-02-02T12:00",
+    date_start: "2024-02-01T11:00",
+    description: "A lovely description",
+    friends_accepted: ["w4mYUJ2A3BLdmfnMctXVx6EDAQQE"],
+    friends_invited: ["Mrs Muntz"],
+    location: "A lovely location",
+    name: "A lovely event name",
+    owner: "w4mYUJ2A3BLdmfnMctXVx6EDAQQE",
+  };
+
+  const stubbedToken =
+    "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJuYW1lIjoiIi…N1YiI6Inc0bVlVSjJBM0JMZG1mbk1jdFhWeDZFREFRUUUifQ.";
+
+  const setup = (props) => {
+    const initialProps = {
+      history: {},
+      initialState: {
+        fields: {
+          name: "",
+          description: "",
+          date_start: "",
+          date_end: "",
+          location: "",
+          friends_invited: [],
+          owner: "",
+        },
+        dates: {
+          date_start: "",
+          date_end: "",
+        },
+      },
+      postEvent: () => {},
+      setAlert: () => {},
+    };
+
+    const combinedProps = {
+      ...initialProps,
+      ...props,
+    };
+
     render(
-      <UserContext.Provider value={loggedInProviderProps}>
-        <CreateEvent />
-      </UserContext.Provider>
+      <MemoryRouter>
+        <UserContext.Provider value={loggedInProviderProps}>
+          <CreateEvent {...combinedProps} />
+        </UserContext.Provider>
+      </MemoryRouter>
     );
   };
 
@@ -95,7 +154,41 @@ describe("CreateEvent", () => {
     expect(locationField.value).toContain("Springfield");
   });
 
-  xit("updates the start and end fields with the correct user input", () => {});
+  it("calls the api with the correct body", async () => {
+    const setAlert = jest.fn();
 
-  xit("submits the form with the correct event data", () => {});
+    setup();
+
+    mock
+      .onPost(`${BASE_URL}/events`, {
+        stubbedFields,
+        headers: { Authorization: `Bearer ${stubbedToken}` },
+      })
+      .reply(201);
+
+    await postEvent(stubbedFields, stubbedToken, setAlert);
+
+    expect(mock.history.post.length).toEqual(1);
+
+    expect(JSON.parse(mock.history.post[0].data)).toEqual(stubbedFields);
+  });
+
+  xit("returns 'record created successfully' when an event is created", async () => {
+    const setAlert = jest.fn();
+
+    setup();
+
+    mock
+      .onPost(`${BASE_URL}/events`, {
+        stubbedFields,
+        headers: { Authorization: `Bearer ${stubbedToken}` },
+      })
+      .reply(201);
+
+    await postEvent(stubbedFields, stubbedToken, setAlert);
+
+    expect(mock.history.post.length).toEqual(1);
+
+    const result = await postEvent(stubbedFields, stubbedToken, setAlert);
+  });
 });
