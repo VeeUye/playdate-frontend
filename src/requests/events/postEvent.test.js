@@ -2,13 +2,12 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { postEvent, BASE_URL } from "./postEvent";
 
+const mock = new MockAdapter(axios);
+
 describe("postEvent", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetAllMocks();
+    mock.reset();
   });
-
-  const mock = new MockAdapter(axios);
 
   const stubbedFields = {
     date_end: "2024-02-02T12:00",
@@ -61,6 +60,7 @@ describe("postEvent", () => {
       isSuccess: true,
     });
   });
+
   it("it sets a failure alert when an event is not successfully posted", async () => {
     jest.clearAllMocks();
 
