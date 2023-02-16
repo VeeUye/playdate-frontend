@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import FormInput from "../../atoms/form-input/FormInput";
-import postEvent from "../../../requests/events/postEvent";
+import { postEvent } from "../../../requests/events/postEvent";
 import Alert from "../../../requests/alert/Alert";
 import Button from "../../atoms/button/Button";
 import MultiSelect from "../../atoms/MultiSelect";

@@ -34,28 +34,32 @@ describe("postEvent", () => {
     expect(mock.history.post[0].data).toEqual(JSON.stringify(stubbedFields));
   });
 
+  it("returns 'record created successfully' when an event is created", async () => {
+    const setAlert = jest.fn();
+
+    mock.onPost(`${BASE_URL}/events`).reply(201, "Record saved successfully");
+
+    const result = await postEvent(stubbedFields, stubbedToken, setAlert);
+
+    expect(mock.history.post.length).toEqual(1);
+
+    expect(result).toEqual("Record saved successfully");
+  });
+
   it("it sets a success alert when an event is successfully posted", async () => {
-    const mockedSetAlert = jest
+    const mockSetAlert = jest
       .fn()
-      .mockReturnValueOnce({ message: "Event Created", isSuccess: true });
+      .mockReturnValue({ message: "Event Created", isSuccess: true });
 
-    mock
-      .onPost(postEventEndpoint, stubbedFields)
-      .reply(201, "Record saved successfully");
+    mock.onPost(`${BASE_URL}/events`).reply(201, "Record saved successfully");
 
-    const response = await postEvent(
-      stubbedFields,
-      stubbedToken,
-      mockedSetAlert
-    );
+    await postEvent(stubbedFields, stubbedToken, mockSetAlert);
 
     expect(mock.history.post.length).toEqual(1);
 
     expect(mock.history.post[0].data).toEqual(JSON.stringify(stubbedFields));
 
-    expect(response.status).toEqual(201);
-
-    expect(mockedSetAlert).toHaveReturnedWith({
+    expect(mockSetAlert).toHaveReturnedWith({
       message: "Event Created",
       isSuccess: true,
     });

@@ -172,23 +172,4 @@ describe("CreateEvent", () => {
 
     expect(JSON.parse(mock.history.post[0].data)).toEqual(stubbedFields);
   });
-
-  xit("returns 'record created successfully' when an event is created", async () => {
-    const setAlert = jest.fn();
-
-    setup();
-
-    mock
-      .onPost(`${BASE_URL}/events`, {
-        stubbedFields,
-        headers: { Authorization: `Bearer ${stubbedToken}` },
-      })
-      .reply(201);
-
-    await postEvent(stubbedFields, stubbedToken, setAlert);
-
-    expect(mock.history.post.length).toEqual(1);
-
-    const result = await postEvent(stubbedFields, stubbedToken, setAlert);
-  });
 });

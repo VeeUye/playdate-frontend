@@ -6,7 +6,7 @@ export const BASE_URL =
 
 export const postEvent = async (fields, userIdToken, setAlert) => {
   try {
-    const res = await axios.post(`${BASE_URL}/events`, fields, {
+    const response = await axios.post(`${BASE_URL}/events`, fields, {
       headers: { Authorization: `Bearer ${userIdToken}` },
     });
 
@@ -15,15 +15,16 @@ export const postEvent = async (fields, userIdToken, setAlert) => {
       isSuccess: true,
     });
 
-    console.log(res, "res");
-    return res;
+    console.log(response.data, "response");
+
+    return response.data;
   } catch (err) {
     setAlert({
       message: "Server Error. Please try again later",
       isSuccess: false,
     });
 
-    console.log(err);
+    console.log(err, "error");
     return err;
   }
 };
