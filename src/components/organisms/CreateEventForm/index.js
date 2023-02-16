@@ -41,12 +41,12 @@ const CreateEventForm = ({ user, token, friends }) => {
 
   const [alert, setAlert] = useState(initialState.alert);
 
-  const handleSubmitForm = (event) => {
+  const handleSubmitForm = async (event) => {
     event.preventDefault();
     dates.date_start = new Date(fields.date_start);
     dates.date_end = new Date(fields.date_end);
     setAlert({ message: "", isSuccess: false });
-    postEvent(fields, token, setAlert);
+    await postEvent(fields, token, setAlert);
     setFields(initialState.fields);
     setDates(initialState.dates);
     history.push("/my-profile");
