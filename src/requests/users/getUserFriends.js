@@ -15,7 +15,7 @@ const getUserFriends = async (userId, userIdToken) => {
         return res.data;
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
   }
 };
