@@ -4,7 +4,10 @@ import { MemoryRouter } from "react-router-dom";
 import MockAdapter from "axios-mock-adapter";
 import { UserContext } from "../../../contexts/AuthContext";
 import CreateEvent from "../../../components/pages/CreateEvent/index";
-import { postEvent, BASE_URL } from "../../../requests/events/postEvent";
+import {
+  postEvent,
+  BASE_URL,
+} from "../../../requests/events/postEvent/postEvent";
 
 const axios = require("axios");
 
