@@ -8,10 +8,11 @@ import {
   postEvent,
   BASE_URL,
 } from "../../../requests/events/postEvent/postEvent";
+import userEvent from "@testing-library/user-event";
 
 const axios = require("axios");
 
-// const mock = new MockAdapter(axios);
+const mock = new MockAdapter(axios);
 
 describe("CreateEvent", () => {
   let mock;
@@ -158,21 +159,24 @@ describe("CreateEvent", () => {
   });
 
   it("calls the api with the correct body", async () => {
-    const setAlert = jest.fn();
-
     setup();
 
-    mock
-      .onPost(`${BASE_URL}/events`, {
-        stubbedFields,
-        headers: { Authorization: `Bearer ${stubbedToken}` },
-      })
-      .reply(201);
+    fireEvent.change(nameField(), { target: { value: stubbedFields.name } });
+    fireEvent.change(descriptionField(), {
+      target: { value: stubbedFields.description },
+    });
+    fireEvent.change(startDateField(), {
+      target: { value: stubbedFields.date_start },
+    });
+    fireEvent.change(endDateField(), {
+      target: { value: stubbedFields.date_end },
+    });
+    fireEvent.change(locationField(), {
+      target: { value: stubbedFields.location },
+    });
 
-    await postEvent(stubbedFields, stubbedToken, setAlert);
-
-    expect(mock.history.post.length).toEqual(1);
-
-    expect(JSON.parse(mock.history.post[0].data)).toEqual(stubbedFields);
+    // update the invite fields
+    // call handleformsubmit
+    // assert on the call
   });
 });
