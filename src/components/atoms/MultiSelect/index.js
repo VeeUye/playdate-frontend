@@ -25,6 +25,7 @@ function stateReducer(state, actionAndChanges) {
 }
 
 function MultiSelect({ friends, onChange }) {
+  console.log(friends);
   const onSelectedItemChange = ({ selectedItem }) => {
     if (!selectedItem) {
       return;

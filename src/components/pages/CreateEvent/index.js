@@ -31,6 +31,8 @@ const CreateEvent = () => {
     });
   }, [user]);
 
+  console.log(friends);
+
   return (
     <>
       {!user || !token || !friends ? (

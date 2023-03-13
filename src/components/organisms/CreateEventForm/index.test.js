@@ -1,48 +1,68 @@
 import React from "react";
-import { fireEvent, render, screen, within } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import MockAdapter from "axios-mock-adapter";
-import { UserContext } from "../../../contexts/AuthContext";
-import CreateEvent from "../../../components/pages/CreateEvent/index";
-import {
-  postEvent,
-  BASE_URL,
-} from "../../../requests/events/postEvent/postEvent";
-import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import CreateEventForm from "./index";
 
 const axios = require("axios");
 
-const mock = new MockAdapter(axios);
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useHistory: jest.fn(),
+}));
 
 describe("CreateEvent", () => {
   let mock;
+  let historyMock;
 
   beforeAll(() => {
     mock = new MockAdapter(axios);
+  });
+
+  beforeEach(() => {
+    historyMock = { push: jest.fn() };
+    useHistory.mockReturnValue(historyMock);
   });
 
   afterEach(() => {
     mock.reset();
   });
 
+  const stubbedOptions = [
+    { value: "FaoLwxoE2ub6qYMZRACNiNEth9OH", label: "Chief Wiggum" },
+    { value: "t0fvq3bA77Z7X3F1a7LkeCOBipne", label: "Ned Flanders" },
+    { value: "5B7vtdeoWXWtjdE69cNZoMM35tDz", label: "Mrs Muntz" },
+    { value: "IjGY7FYdqX6KbJ0yaje1qfPQLAJX", label: "Luann Van Houten" },
+    { value: "hUt11WDzxEYMvT3Tyh9kGm1JVaHw", label: "Mrs Powell" },
+  ];
+
+  const setup = (props) => {
+    const initialProps = {
+      user: {
+        uid: 123,
+      },
+      token: "im-a-little-token",
+      friends: stubbedOptions,
+      history: {},
+    };
+
+    const combinedProps = {
+      ...initialProps,
+      ...props,
+    };
+    render(
+      <MemoryRouter>
+        <CreateEventForm {...combinedProps} />
+      </MemoryRouter>
+    );
+  };
+
   const nameField = () => screen.getByLabelText("Event Name");
   const descriptionField = () => screen.getByLabelText("Description");
   const startDateField = () => screen.getByLabelText("Start");
   const endDateField = () => screen.getByLabelText("End");
   const locationField = () => screen.getByLabelText("Location");
-  const inviteField = () => screen.getByTestId("invite-friends");
-
-  const loggedInProviderProps = {
-    user: {
-      uid: 1234,
-    },
-    token: "Im-a-little-token",
-  };
-
-  const loggedOutProviderProps = {
-    user: {},
-    token: "",
-  };
 
   const stubbedFields = {
     date_end: "2024-02-02T12:00",
@@ -54,77 +74,6 @@ describe("CreateEvent", () => {
     name: "A lovely event name",
     owner: "w4mYUJ2A3BLdmfnMctXVx6EDAQQE",
   };
-
-  const stubbedToken =
-    "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJuYW1lIjoiIi…N1YiI6Inc0bVlVSjJBM0JMZG1mbk1jdFhWeDZFREFRUUUifQ.";
-
-  const setup = (props) => {
-    const initialProps = {
-      history: {},
-      initialState: {
-        fields: {
-          name: "",
-          description: "",
-          date_start: "",
-          date_end: "",
-          location: "",
-          friends_invited: [],
-          owner: "",
-        },
-        dates: {
-          date_start: "",
-          date_end: "",
-        },
-      },
-      postEvent: () => {},
-      setAlert: () => {},
-    };
-
-    const combinedProps = {
-      ...initialProps,
-      ...props,
-    };
-
-    render(
-      <MemoryRouter>
-        <UserContext.Provider value={loggedInProviderProps}>
-          <CreateEvent {...combinedProps} />
-        </UserContext.Provider>
-      </MemoryRouter>
-    );
-  };
-
-  it("renders with the create event form with the correct fields when a user is logged in", () => {
-    setup();
-
-    const outer = screen.getByTestId("create-event-outer");
-    const form = within(outer).getByLabelText("Event Name");
-    const spinner = screen.queryByTestId("spinner");
-
-    expect(form).toBeVisible();
-    expect(spinner).not.toBeInTheDocument();
-
-    expect(nameField()).toBeVisible();
-    expect(descriptionField()).toBeVisible();
-    expect(startDateField()).toBeVisible();
-    expect(endDateField()).toBeVisible();
-    expect(locationField()).toBeVisible();
-    expect(inviteField()).toBeVisible();
-  });
-
-  it("displays a loading spinner when a user is not logged in", () => {
-    render(
-      <UserContext.Provider value={loggedOutProviderProps}>
-        <CreateEvent />
-      </UserContext.Provider>
-    );
-
-    const spinner = screen.getByTestId("spinner");
-    const outer = screen.queryByTestId("create-event-outer");
-
-    expect(spinner).toBeVisible();
-    expect(outer).not.toBeInTheDocument();
-  });
 
   it("updates the name field with the correct user input", () => {
     setup();
@@ -158,8 +107,10 @@ describe("CreateEvent", () => {
     expect(locationField.value).toContain("Springfield");
   });
 
-  it("calls the api with the correct body", async () => {
+  it("submits the form when the the Create Event button is clicked and redirects to the profile page", async () => {
     setup();
+
+    const button = screen.getByRole("button", { name: "Create Event" });
 
     fireEvent.change(nameField(), { target: { value: stubbedFields.name } });
     fireEvent.change(descriptionField(), {
@@ -175,8 +126,19 @@ describe("CreateEvent", () => {
       target: { value: stubbedFields.location },
     });
 
-    // update the invite fields
-    // call handleformsubmit
-    // assert on the call
+    const inviteSelect = screen.getByRole("combobox");
+
+    fireEvent.click(inviteSelect);
+
+    const options = screen.getAllByRole("option");
+
+    fireEvent.click(options[0]);
+    fireEvent.click(options[3]);
+
+    fireEvent.click(button);
+
+    await waitFor(() => {
+      expect(historyMock.push).toHaveBeenCalledWith("/my-profile");
+    });
   });
 });
