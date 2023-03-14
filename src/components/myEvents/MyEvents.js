@@ -14,8 +14,8 @@ import getMyEvents from "../../requests/events/getMyEvents/getMyEvents";
 import getMyPendingEvents from "../../requests/events/getMyPendingEvents/getMyPendingEvents";
 import LoadSpinner from "../load-spinner/LoadSpinner";
 import "./my-events.module.css";
-import Button from "../atoms/button/Button";
-import buttonStyles from "../atoms/button/button.module.css";
+import Button from "../atoms/Button/index";
+import buttonStyles from "../atoms/Button/styles.module.css";
 
 const MyEvents = () => {
   const history = useHistory();

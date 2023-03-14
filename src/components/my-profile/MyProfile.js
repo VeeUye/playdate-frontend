@@ -19,8 +19,8 @@ import SuperSubHeading from "../atoms/supersubheading/SuperSubheading";
 import superSubstyles from "../atoms/supersubheading/supersubheading.module.css";
 import myProfileStyles from "../my-profile/my-profile.module.css";
 import { Icon } from "@iconify/react";
-import Button from "../atoms/button/Button";
-import buttonStyles from "../atoms/button/button.module.css";
+import Button from "../atoms/Button/index";
+import buttonStyles from "../atoms/Button/styles.module.css";
 
 const MyProfile = () => {
   const initialState = {

@@ -3,8 +3,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import eventCardStyles from "./event-card.module.css";
 import "./event-card.module.css";
-import Button from "../atoms/button/Button";
-import buttonStyles from "../atoms/button/button.module.css";
+import Button from "../atoms/Button/index";
+import buttonStyles from "../atoms/Button/styles.module.css";
 import { Icon } from "@iconify/react";
 
 const AcceptedEventCard = ({ eventData, userId, setDeclinedResponse }) => {
@@ -26,14 +26,29 @@ const AcceptedEventCard = ({ eventData, userId, setDeclinedResponse }) => {
   const d_start = new Date(date_start);
   const d_end = new Date(date_end);
   const dateStart = {
-    date: (d_start.getUTCDate() <10) ? `0${d_start.getUTCDate()}` : `${d_start.getUTCDate()}`,
+    date:
+      d_start.getUTCDate() < 10
+        ? `0${d_start.getUTCDate()}`
+        : `${d_start.getUTCDate()}`,
     month: d_start.getUTCMonth(),
-    hours: (d_start.getUTCHours() <10) ? `0${d_start.getUTCHours()}` : `${d_start.getUTCHours()}`,
-    minutes: (d_start.getUTCMinutes() < 10) ? (`0${d_start.getUTCMinutes()}`) : (`${d_start.getUTCMinutes()}`),  
+    hours:
+      d_start.getUTCHours() < 10
+        ? `0${d_start.getUTCHours()}`
+        : `${d_start.getUTCHours()}`,
+    minutes:
+      d_start.getUTCMinutes() < 10
+        ? `0${d_start.getUTCMinutes()}`
+        : `${d_start.getUTCMinutes()}`,
   };
   const dateEnd = {
-    hours: (d_end.getUTCHours() <10) ? `0${d_end.getUTCHours()}` : `${d_end.getUTCHours()}`,
-    minutes: (d_end.getUTCMinutes() < 10) ? (`0${d_end.getUTCMinutes()}`) : (`${d_end.getUTCMinutes()}`),
+    hours:
+      d_end.getUTCHours() < 10
+        ? `0${d_end.getUTCHours()}`
+        : `${d_end.getUTCHours()}`,
+    minutes:
+      d_end.getUTCMinutes() < 10
+        ? `0${d_end.getUTCMinutes()}`
+        : `${d_end.getUTCMinutes()}`,
   };
 
   const handleDeclineInvite = () => {

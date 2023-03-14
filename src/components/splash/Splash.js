@@ -4,9 +4,9 @@ import screenSize from "../../functions/screenSize";
 import Subheading from "../atoms/subheading/Subheading";
 import Title from "../atoms/title/Title";
 import Image from "../../assets/images/swinging.svg";
-import Button from "../atoms/button/Button";
+import Button from "../atoms/Button/index";
 import splash from "./splash.module.css";
-import button from "../atoms/button/button.module.css";
+import button from "../atoms/Button/styles.module.css";
 import titleStyles from "../atoms/title/title.module.css";
 
 const Splash = () => {

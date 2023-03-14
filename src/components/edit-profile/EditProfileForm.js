@@ -4,10 +4,10 @@ import editProfile from "../../requests/profile/editProfile";
 import PropTypes from "prop-types";
 import FormInput from "../atoms/form-input/FormInput";
 import Alert from "../atoms/Alert/Alert";
-import Button from "../atoms/button/Button";
+import Button from "../atoms/Button/index";
 import formStyles from "./edit-profile-form.module.css";
 import inputStyles from "../atoms/form-input/form-input.module.css";
-import buttonStyles from "../atoms/button/button.module.css";
+import buttonStyles from "../atoms/Button/styles.module.css";
 // import EditProfile from "./EditProfile";
 // import { UserAuth } from "../../contexts/AuthContext";
 

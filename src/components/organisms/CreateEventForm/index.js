@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 import FormInput from "../../atoms/form-input/FormInput";
 import { postEvent } from "../../../requests/events/postEvent/postEvent";
 import Alert from "../../atoms/Alert/Alert";
-import Button from "../../atoms/button/Button";
+import Button from "../../atoms/Button/index";
 import MultiSelect from "../../molecules/MultiSelect";
 
 import formStyles from "./styles.module.css";
 import inputStyles from "../../atoms/form-input/form-input.module.css";
-import buttonStyles from "../../atoms/button/button.module.css";
+import buttonStyles from "../../atoms/Button/styles.module.css";
 
 const CreateEventForm = ({ user, token, friends }) => {
   const history = useHistory();
