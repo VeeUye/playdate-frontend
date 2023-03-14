@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import FormInput from "../../atoms/Input";
+import Input from "../../atoms/Input";
 import { postEvent } from "../../../requests/events/postEvent/postEvent";
 import Alert from "../../atoms/Alert";
 import Button from "../../atoms/Button/index";
@@ -93,7 +93,7 @@ const CreateEventForm = ({ user, token, friends }) => {
     <>
       <form role="form" onSubmit={handleSubmitForm} key="create-event-key">
         <div className={formStyles.field1}>
-          <FormInput
+          <Input
             className={inputStyles.input}
             label="Event Name"
             type="text"
@@ -104,7 +104,7 @@ const CreateEventForm = ({ user, token, friends }) => {
             key="event-name-key"
           />
 
-          <FormInput
+          <Input
             className={inputStyles.input}
             label="Description"
             type="text"
@@ -114,7 +114,7 @@ const CreateEventForm = ({ user, token, friends }) => {
             key="description-key"
           />
 
-          <FormInput
+          <Input
             className={inputStyles.input}
             label="Start"
             type="datetime-local"
@@ -124,7 +124,7 @@ const CreateEventForm = ({ user, token, friends }) => {
             key="date-start-key"
           />
 
-          <FormInput
+          <Input
             className={inputStyles.input}
             label="End"
             type="datetime-local"
@@ -134,7 +134,7 @@ const CreateEventForm = ({ user, token, friends }) => {
             key="date-end-key"
           />
 
-          <FormInput
+          <Input
             className={inputStyles.input}
             label="Location"
             type="text"

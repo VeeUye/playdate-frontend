@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import postProfile from "../../../requests/profile/postProfile";
 import PropTypes from "prop-types";
-import FormInput from "../../atoms/Input";
+import Input from "../../atoms/Input";
 import Alert from "../../atoms/Alert";
 import Button from "../../atoms/Button/index";
 import styles from "./styles.module.css";
@@ -61,7 +61,7 @@ const CreateProfileForm = ({ imgUrl, user, token }) => {
       <form onSubmit={handleCreateEvent}>
         <div className={styles.field1}>
           <div>
-            <FormInput
+            <Input
               className={inputStyles.input}
               label="Your Name"
               type="text"
@@ -70,7 +70,7 @@ const CreateProfileForm = ({ imgUrl, user, token }) => {
               onChange={handleFieldChange}
             />
 
-            <FormInput
+            <Input
               className={inputStyles.input}
               label="About You"
               type="text"
@@ -79,7 +79,7 @@ const CreateProfileForm = ({ imgUrl, user, token }) => {
               onChange={handleFieldChange}
             />
 
-            <FormInput
+            <Input
               className={inputStyles.input}
               label="Child/Children's name"
               type="text"
@@ -89,7 +89,7 @@ const CreateProfileForm = ({ imgUrl, user, token }) => {
               onChange={handleFieldChange}
             />
 
-            <FormInput
+            <Input
               className={inputStyles.input}
               label="Location"
               type="text"

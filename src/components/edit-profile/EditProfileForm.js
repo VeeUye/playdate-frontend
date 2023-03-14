@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import editProfile from "../../requests/profile/editProfile";
 import PropTypes from "prop-types";
-import FormInput from "../atoms/Input";
+import Input from "../atoms/Input";
 import Alert from "../atoms/Alert";
 import Button from "../atoms/Button/index";
 import formStyles from "./edit-profile-form.module.css";
@@ -62,7 +62,7 @@ const EditProfileForm = ({ userData, imgUrl, user, token }) => {
       <form onSubmit={handleEditProfile}>
         <div className={formStyles.field1}>
           <div>
-            <FormInput
+            <Input
               className={inputStyles.input}
               label="Your Name"
               type="text"
@@ -72,7 +72,7 @@ const EditProfileForm = ({ userData, imgUrl, user, token }) => {
               onChange={handleFieldChange}
             />
 
-            <FormInput
+            <Input
               className={inputStyles.input}
               label="About You"
               type="text"
@@ -82,7 +82,7 @@ const EditProfileForm = ({ userData, imgUrl, user, token }) => {
               onChange={handleFieldChange}
             />
 
-            <FormInput
+            <Input
               className={inputStyles.input}
               label="Child/Children's Name"
               type="text"
@@ -92,7 +92,7 @@ const EditProfileForm = ({ userData, imgUrl, user, token }) => {
               onChange={handleFieldChange}
             />
 
-            <FormInput
+            <Input
               className={inputStyles.input}
               label="Location"
               type="text"

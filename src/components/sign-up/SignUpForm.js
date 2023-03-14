@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UserAuth } from "../../contexts/AuthContext";
-import FormInput from "../atoms/Input";
+import Input from "../atoms/Input";
 import screenSize from "../../functions/screenSize";
 import Button from "../atoms/Button/index";
 import Divider from "../../assets/images/or-divider.svg";
@@ -49,7 +49,7 @@ const SignUpForm = () => {
       <form onSubmit={handleCreateEvent}>
         <div className={formStyles.signUpField1}>
           <div>
-            <FormInput
+            <Input
               className={inputStyles.inputSignUp}
               label="email"
               type="email"
@@ -58,7 +58,7 @@ const SignUpForm = () => {
               onChange={handleFieldChange}
             />
 
-            <FormInput
+            <Input
               className={inputStyles.inputSignUp}
               label="Password"
               type="password"

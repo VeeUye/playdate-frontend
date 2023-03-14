@@ -1,27 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
-import inputStyles from "./styles.module.css";
 
-const FormInput = (props) => {
+import styles from "./styles.module.css";
+
+const Input = ({
+  className,
+  name,
+  label,
+  type,
+  value,
+  placeholder,
+  onChange,
+}) => {
   return (
-    <div className={inputStyles.field}>
-      <label className={inputStyles.label} htmlFor={props.name}>
-        {props.label}
+    <div className={styles.field}>
+      <label className={styles.label} htmlFor={name}>
+        {label}
         <input
-          className={props.className}
-          id={props.name}
-          type={props.type}
-          name={props.name}
-          value={props.value}
-          placeholder={props.placeholder}
-          onChange={props.onChange}
+          className={className}
+          id={name}
+          type={type}
+          name={name}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
         />
       </label>
     </div>
   );
 };
 
-FormInput.propTypes = {
+Input.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
@@ -31,4 +40,4 @@ FormInput.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default FormInput;
+export default Input;
