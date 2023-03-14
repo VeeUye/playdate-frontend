@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import alertStyles from "./alert.module.css";
+import alertStyles from "./styles.module.css";
 
 const Alert = ({ message, success }) => {
   if (!message) return null;
@@ -9,6 +9,7 @@ const Alert = ({ message, success }) => {
       className={`${alertStyles.alert} ${
         success ? alertStyles.success : alertStyles.error
       }`}
+      data-testid="alert"
     >
       {message}
     </div>
