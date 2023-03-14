@@ -14,7 +14,7 @@ describe("postEvent", () => {
     date_start: "2024-02-01T11:00",
     description: "A lovely description",
     friends_accepted: ["w4mYUJ2A3BLdmfnMctXVx6EDAQQE"],
-    friends_invited: ["Mrs Muntz"],
+    friends_invited: ["Chief Wiggum", "Luann Van Houten"],
     location: "A lovely location",
     name: "A lovely event name",
     owner: "w4mYUJ2A3BLdmfnMctXVx6EDAQQE",
