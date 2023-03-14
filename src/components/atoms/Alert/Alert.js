@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import alertStyles from "../alert/alert.module.css";
+import alertStyles from "./alert.module.css";
 
 const Alert = ({ message, success }) => {
   if (!message) return null;

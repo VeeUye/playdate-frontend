@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import editProfile from "../../requests/profile/editProfile";
 import PropTypes from "prop-types";
 import FormInput from "../atoms/form-input/FormInput";
-import Alert from "../../requests/alert/Alert";
+import Alert from "../atoms/Alert/Alert";
 import Button from "../atoms/button/Button";
 import formStyles from "./edit-profile-form.module.css";
 import inputStyles from "../atoms/form-input/form-input.module.css";
@@ -11,11 +11,10 @@ import buttonStyles from "../atoms/button/button.module.css";
 // import EditProfile from "./EditProfile";
 // import { UserAuth } from "../../contexts/AuthContext";
 
-const EditProfileForm = ({ userData, imgUrl, user, token}) => {
+const EditProfileForm = ({ userData, imgUrl, user, token }) => {
   // const { user, token } = UserAuth();
   const history = useHistory();
 
-  
   const initialState = {
     alert: {
       message: "",
@@ -39,8 +38,8 @@ const EditProfileForm = ({ userData, imgUrl, user, token}) => {
     const userId = user.uid;
     event.preventDefault();
     if (fields.children) {
-      const childrenArray = fields.children.replace(/\s+/g,"").split(",");
-      const fields2 = {...fields, children: childrenArray};
+      const childrenArray = fields.children.replace(/\s+/g, "").split(",");
+      const fields2 = { ...fields, children: childrenArray };
       editProfile(fields2, userId, token, setAlert);
     } else {
       editProfile(fields, userId, token, setAlert);
@@ -50,10 +49,10 @@ const EditProfileForm = ({ userData, imgUrl, user, token}) => {
 
   const handleFieldChange = (event) => {
     setFields({
-       ...fields, 
-       [event.target.name]: event.target.value,
-       ["imgUrl"]: imgUrl, 
-      });
+      ...fields,
+      [event.target.name]: event.target.value,
+      ["imgUrl"]: imgUrl,
+    });
   };
 
   const handleClick = () => {};
@@ -82,7 +81,7 @@ const EditProfileForm = ({ userData, imgUrl, user, token}) => {
               value={fields.description}
               onChange={handleFieldChange}
             />
-            
+
             <FormInput
               className={inputStyles.input}
               label="Child/Children's Name"
@@ -125,12 +124,12 @@ EditProfileForm.propTypes = {
     name: PropTypes.string.isRequired,
     userId: PropTypes.string.isRequired,
     description: PropTypes.string,
-    children: PropTypes.arrayOf(PropTypes.string), 
+    children: PropTypes.arrayOf(PropTypes.string),
     location: PropTypes.string,
-    friends: PropTypes.arrayOf(PropTypes.string), 
+    friends: PropTypes.arrayOf(PropTypes.string),
     imgUrl: PropTypes.string,
   }),
   imgUrl: PropTypes.string,
-  user:  PropTypes.object,
+  user: PropTypes.object,
   token: PropTypes.string,
-}
+};

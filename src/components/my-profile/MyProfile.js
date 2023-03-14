@@ -12,7 +12,7 @@ import LoadSpinner from "../load-spinner/LoadSpinner";
 import acceptEvent from "../../requests/events/acceptEvent/putAcceptEvent";
 import declineEvent from "../../requests/events/declineEvent/putDeclineEvent";
 import addButton from "../../assets/images/circle-button.svg";
-import Alert from "../../requests/alert/Alert";
+import Alert from "../atoms/Alert/Alert";
 import SmallTitle from "../atoms/small-title/SmallTitle";
 import EventCard from "../myEvents/EventCard";
 import SuperSubHeading from "../atoms/supersubheading/SuperSubheading";

@@ -46,7 +46,7 @@ describe("postEvent", () => {
     expect(result).toEqual("Record saved successfully");
   });
 
-  it("it sets a success alert when an event is successfully posted", async () => {
+  it("it sets a success Alert when an event is successfully posted", async () => {
     const mockSetAlert = jest
       .fn()
       .mockReturnValue({ message: "Event Created", isSuccess: true });
@@ -65,7 +65,7 @@ describe("postEvent", () => {
     });
   });
 
-  it("it sets a failure alert when an event is not successfully posted", async () => {
+  it("it sets a failure Alert when an event is not successfully posted", async () => {
     jest.clearAllMocks();
 
     mock.onPost(postEventEndpoint, stubbedFields).reply(500);

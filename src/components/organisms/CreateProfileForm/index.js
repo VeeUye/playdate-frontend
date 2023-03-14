@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import postProfile from "../../requests/profile/postProfile";
+import postProfile from "../../../requests/profile/postProfile";
 import PropTypes from "prop-types";
-import FormInput from "../atoms/form-input/FormInput";
-import Alert from "../../requests/alert/Alert";
-import Button from "../atoms/button/Button";
-import formStyles from "./create-profile-form.module.css";
-import inputStyles from "../atoms/form-input/form-input.module.css";
-import buttonStyles from "../atoms/button/button.module.css";
+import FormInput from "../../atoms/form-input/FormInput";
+import Alert from "../../atoms/Alert/Alert";
+import Button from "../../atoms/button/Button";
+import styles from "./styles.module.css";
+import inputStyles from "../../atoms/form-input/form-input.module.css";
+import buttonStyles from "../../atoms/button/button.module.css";
 
 const CreateProfileForm = ({ imgUrl, user, token }) => {
   const history = useHistory();
@@ -59,7 +59,7 @@ const CreateProfileForm = ({ imgUrl, user, token }) => {
   return (
     <>
       <form onSubmit={handleCreateEvent}>
-        <div className={formStyles.field1}>
+        <div className={styles.field1}>
           <div>
             <FormInput
               className={inputStyles.input}

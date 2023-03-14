@@ -27,7 +27,7 @@ const SignUpForm = () => {
     setFields(initialState.fields);
     try {
       await createUser(fields.email, fields.password);
-      history.push("/create-profile");
+      history.push("/CreateProfileForm");
     } catch (e) {
       console.log(e.message);
     }

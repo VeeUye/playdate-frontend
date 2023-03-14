@@ -11,7 +11,7 @@ import SignIn from "./sign-in/SignIn";
 import MyProfile from "./my-profile/MyProfile";
 import MyEvents from "./myEvents/MyEvents";
 import CreateEvent from "./pages/CreateEvent/index";
-import CreateProfile from "./create-profile/CreateProfile";
+import CreateProfile from "./pages/CreateProfile";
 import EditProfile from "./edit-profile/EditProfile";
 import "../styles/App.css";
 import ProtectedRoute from "./protected-routes/ProtectedRoutes";
