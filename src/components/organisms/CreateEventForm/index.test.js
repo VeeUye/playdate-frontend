@@ -109,6 +109,47 @@ describe("CreateEventForm", () => {
     expect(locationField.value).toContain("Springfield");
   });
 
+  it("it removes a friend from state when a friend option is unclicked", async () => {
+    setup();
+
+    const button = screen.getByRole("button", { name: "Create Event" });
+
+    fireEvent.change(nameField(), { target: { value: stubbedFields.name } });
+    fireEvent.change(descriptionField(), {
+      target: { value: stubbedFields.description },
+    });
+    fireEvent.change(startDateField(), {
+      target: { value: stubbedFields.date_start },
+    });
+    fireEvent.change(endDateField(), {
+      target: { value: stubbedFields.date_end },
+    });
+    fireEvent.change(locationField(), {
+      target: { value: stubbedFields.location },
+    });
+
+    const inviteSelect = screen.getByRole("combobox");
+
+    fireEvent.click(inviteSelect);
+
+    const options = screen.getAllByRole("option");
+
+    fireEvent.click(options[0]);
+    fireEvent.click(options[3]);
+    fireEvent.click(options[0]);
+
+    fireEvent.click(button);
+
+    expect(mock.history.post.length).toEqual(1);
+
+    expect(mock.history.post[0].data).toEqual(
+      JSON.stringify({
+        ...stubbedFields,
+        friends_invited: ["Luann Van Houten"],
+      })
+    );
+  });
+
   it("submits the form when the the Create Event button is clicked and redirects to the profile page", async () => {
     setup();
 
