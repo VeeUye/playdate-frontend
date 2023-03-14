@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import FormInput from "../../atoms/Input/FormInput";
+import FormInput from "../../atoms/Input";
 import { postEvent } from "../../../requests/events/postEvent/postEvent";
 import Alert from "../../atoms/Alert";
 import Button from "../../atoms/Button/index";
 import MultiSelect from "../../molecules/MultiSelect";
 
 import formStyles from "./styles.module.css";
-import inputStyles from "../../atoms/Input/form-input.module.css";
+import inputStyles from "../../atoms/Input/styles.module.css";
 import buttonStyles from "../../atoms/Button/styles.module.css";
 
 const CreateEventForm = ({ user, token, friends }) => {

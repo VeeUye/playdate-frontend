@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import inputStyles from "./form-input.module.css";
+import inputStyles from "./styles.module.css";
 
 const FormInput = (props) => {
   return (

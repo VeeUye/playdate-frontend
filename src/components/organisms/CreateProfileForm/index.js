@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import postProfile from "../../../requests/profile/postProfile";
 import PropTypes from "prop-types";
-import FormInput from "../../atoms/Input/FormInput";
+import FormInput from "../../atoms/Input";
 import Alert from "../../atoms/Alert";
 import Button from "../../atoms/Button/index";
 import styles from "./styles.module.css";
-import inputStyles from "../../atoms/Input/form-input.module.css";
+import inputStyles from "../../atoms/Input/styles.module.css";
 import buttonStyles from "../../atoms/Button/styles.module.css";
 
 const CreateProfileForm = ({ imgUrl, user, token }) => {

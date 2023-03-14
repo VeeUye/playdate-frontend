@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UserAuth } from "../../contexts/AuthContext";
 import { InviteResponse } from "../../contexts/InviteContext";
-import Select from "../atoms/Input/SelectInput";
+import Select from "../atoms/InputMultiSelect/index";
 import getMyProfile from "../../requests/profile/getMyProfile";
 import getAddFriends from "../../requests/users/getAddFriends";
 import getMyPendingEvents from "../../requests/events/getMyPendingEvents/getMyPendingEvents";

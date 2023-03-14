@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UserAuth } from "../../contexts/AuthContext";
-import FormInput from "../atoms/Input/FormInput";
+import FormInput from "../atoms/Input";
 import screenSize from "../../functions/screenSize";
 import Button from "../atoms/Button/index";
 import Divider from "../../assets/images/or-divider.svg";
 import formStyles from "./sign-up-form.module.css";
-import inputStyles from "../atoms/Input/form-input.module.css";
+import inputStyles from "../atoms/Input/styles.module.css";
 import buttonStyles from "../atoms/Button/styles.module.css";
 
 const SignUpForm = () => {
