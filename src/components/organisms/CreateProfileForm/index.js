@@ -36,17 +36,18 @@ const CreateProfileForm = ({ imgUrl, user, token }) => {
     setFields({ ...fields, ["userId"]: user.uid });
   }, []);
 
-  const handleCreateEvent = (event) => {
+  const handleCreateProfile = async (event) => {
     event.preventDefault();
     const childrenArray = fields.children.replace(/\s+/g, "").split(",");
     const fields2 = { ...fields, children: childrenArray, ["imgUrl"]: imgUrl };
     setAlert({ message: "", isSuccess: false });
-    const createUserRequest = async () => {
+    const createProfile = async () => {
       await postProfile(fields2, token, setAlert);
       setFields(initialState.fields);
       history.push("/my-profile");
     };
-    createUserRequest();
+
+    void createProfile();
   };
 
   const handleFieldChange = (event) => {
@@ -58,7 +59,7 @@ const CreateProfileForm = ({ imgUrl, user, token }) => {
 
   return (
     <>
-      <form onSubmit={handleCreateEvent}>
+      <form onSubmit={handleCreateProfile}>
         <div className={styles.field1}>
           <div>
             <Input
