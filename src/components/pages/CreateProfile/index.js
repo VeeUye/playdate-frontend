@@ -23,7 +23,7 @@ const CreateProfile = () => {
         <LoadSpinner />
       ) : (
         <>
-          <div className="background">
+          <div className="background" data-testid="create-profile">
             <SmallTitle
               className={titleStyles.createProfile}
               text="Create Profile"
