@@ -37,7 +37,7 @@ describe("postEvent", () => {
   it("returns 'record created successfully' when an event is created", async () => {
     const setAlert = jest.fn();
 
-    mock.onPost(`${BASE_URL}/events`).reply(201, "Record saved successfully");
+    mock.onPost(postEventEndpoint).reply(201, "Record saved successfully");
 
     const result = await postEvent(stubbedFields, stubbedToken, setAlert);
 
@@ -51,7 +51,7 @@ describe("postEvent", () => {
       .fn()
       .mockReturnValue({ message: "Event Created", isSuccess: true });
 
-    mock.onPost(`${BASE_URL}/events`).reply(201, "Record saved successfully");
+    mock.onPost(postEventEndpoint).reply(201, "Record saved successfully");
 
     await postEvent(stubbedFields, stubbedToken, mockSetAlert);
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import editProfile from "../../requests/profile/editProfile";
+import editProfile from "../../requests/profile/editProfile/editProfile";
 import PropTypes from "prop-types";
 import Input from "../atoms/Input";
 import Alert from "../atoms/Alert";

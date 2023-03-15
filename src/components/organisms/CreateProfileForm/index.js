@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import postProfile from "../../../requests/profile/postProfile";
+import { postProfile } from "../../../requests/profile/postProfile";
 import PropTypes from "prop-types";
 import Input from "../../atoms/Input";
 import Alert from "../../atoms/Alert";
