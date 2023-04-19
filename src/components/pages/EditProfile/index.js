@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import screenSize from "../../functions/screenSize";
-import EditProfileForm from "./EditProfileForm";
-import ProfilePicture from "../profile-picture/ProfilePicture";
-import SmallTitle from "../atoms/small-title/SmallTitle";
-import Image from "../../assets/images/skater.svg";
-import editProfileStyles from "./edit-profile.module.css";
-import getMyProfile from "../../requests/profile/getProfile/getMyProfile";
-import { UserAuth } from "../../contexts/AuthContext";
-import LoadSpinner from "../load-spinner/LoadSpinner";
-import titleStyles from "../atoms/small-title/small-title.module.css";
+import screenSize from "../../../functions/screenSize";
+import { UserAuth } from "../../../contexts/AuthContext";
+import LoadSpinner from "../../load-spinner/LoadSpinner";
+import getMyProfile from "../../../requests/profile/getProfile/getMyProfile";
 
-const EditProfile = () => {
+import EditProfileForm from "../../edit-profile/EditProfileForm";
+import ProfilePicture from "../../profile-picture/ProfilePicture";
+import SmallTitle from "../../atoms/small-title/SmallTitle";
+
+import Image from "../../../assets/images/skater.svg";
+
+import editProfileStyles from "./index.module.css";
+import titleStyles from "../../atoms/small-title/small-title.module.css";
+
+const Index = () => {
   const [imgUrl, setImgUrl] = useState(null);
   const { user, token } = UserAuth();
   const [userData, setUserData] = useState(null);
@@ -70,4 +73,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default Index;
