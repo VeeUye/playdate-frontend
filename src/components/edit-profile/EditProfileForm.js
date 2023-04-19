@@ -24,6 +24,8 @@ const EditProfileForm = ({ userData, imgUrl, user, token }) => {
 
   const childrenStr = userData.children.toString();
 
+  console.log(userData);
+
   const [fields, setFields] = useState([]);
 
   useEffect(() => {

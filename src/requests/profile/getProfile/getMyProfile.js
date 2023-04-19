@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL =
+export const BASE_URL =
   // eslint-disable-next-line no-undef
   process.env.REACT_APP_FIREBASE_FIRESTORE_URL ||
   "https://europe-west2-mc-play-date-scheduler.cloudfunctions.net/app";
@@ -20,6 +20,7 @@ const getMyProfile = async (userId, userIdToken) => {
         //     isSuccess: false,
         // });
         console.log(err);
+        throw new Error("Server Error. Could not fetch user data");
       });
   }
 };

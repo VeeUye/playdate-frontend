@@ -13,7 +13,7 @@ import Image from "../../../assets/images/skater.svg";
 import editProfileStyles from "./index.module.css";
 import titleStyles from "../../atoms/small-title/small-title.module.css";
 
-const Index = () => {
+const EditProfile = () => {
   const [imgUrl, setImgUrl] = useState(null);
   const { user, token } = UserAuth();
   const [userData, setUserData] = useState(null);
@@ -41,6 +41,7 @@ const Index = () => {
               ? editProfileStyles.smallScreen
               : editProfileStyles.bigScreen
           }
+          data-testid="edit-profile-page"
         >
           <div className="background">
             <SmallTitle
@@ -73,4 +74,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default EditProfile;
